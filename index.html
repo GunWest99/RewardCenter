@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reward Centre</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',system-ui,sans-serif; }
+  body {
+    background: radial-gradient(circle at 20% 0%, #1b2340 0%, #0b0f1c 60%, #05070d 100%);
+    color:#e6ecff; min-height:100vh; padding:20px;
+  }
+  header {
+    display:flex; justify-content:space-between; align-items:center;
+    max-width:1200px; margin:0 auto 30px; flex-wrap:wrap; gap:15px;
+  }
+  .logo { font-size:28px; font-weight:800; letter-spacing:1px;
+    background:linear-gradient(90deg,#7c5cff,#22d3ee);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .balance {
+    background:#131a2e; padding:12px 22px; border-radius:14px;
+    border:1px solid #26304d; font-weight:700; font-size:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .balance span { color:#22d3ee; }
+  .cases {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:20px; max-width:1200px; margin:0 auto;
+  }
+  .case {
+    background:linear-gradient(160deg,#141b30,#0d1220);
+    border:1px solid #26304d; border-radius:18px; padding:20px;
+    text-align:center; transition:.25s; position:relative; overflow:hidden;
+  }
+  .case:hover { transform:translateY(-4px); border-color:#7c5cff;
+    box-shadow:0 10px 30px rgba(124,92,255,.25); }
+  .case .emoji { font-size:56px; margin-bottom:10px; }
+  .case h3 { font-size:17px; margin-bottom:6px; }
+  .case .price { color:#8b95b8; font-size:13px; margin-bottom:14px; }
+  .case button {
+    width:100%; padding:12px; border:none; border-radius:10px;
+    background:linear-gradient(90deg,#7c5cff,#22d3ee);
+    color:#fff; font-weight:700; cursor:pointer; font-size:15px;
+    transition:.2s;
+  }
+  .case button:hover { filter:brightness(1.15); }
+  .case button:disabled { opacity:.45; cursor:not-allowed; filter:none; }
+
+  /* Модалка рулетки */
+  .modal {
+    position:fixed; inset:0; background:rgba(3,6,14,.85);
+    display:none; align-items:center; justify-content:center;
+    padding:20px; z-index:100;
+  }
+  .modal.show { display:flex; }
+  .modal-box {
+    background:#0f1526; border:1px solid #26304d; border-radius:20px;
+    padding:30px; max-width:600px; width:100%; text-align:center;
+  }
+  .modal-box h2 { margin-bottom:20px; }
+  .roulette {
+    position:relative; height:110px; overflow:hidden;
+    background:#0a0e1a; border-radius:12px; border:1px solid #26304d;
+    margin-bottom:20px;
+  }
+  .roulette::before {
+    content:''; position:absolute; left:50%; top:0; bottom:0;
+    width:3px; background:#22d3ee; transform:translateX(-50%);
+    z-index:2; box-shadow:0 0 15px #22d3ee;
+  }
+  .strip { display:flex; height:100%; align-items:center;
+    transition:transform 4s cubic-bezier(.15,.9,.15,1); }
+  .item {
+    min-width:110px; height:90px; margin:0 5px; border-radius:10px;
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:center; font-size:30px; background:#141b30;
+    border:1px solid #26304d;
+  }
+  .item small { font-size:11px; color:#8b95b8; margin-top:4px; }
+  .result { font-size:22px; font-weight:700; margin-bottom:20px; min-height:30px; }
+  .win { color:#22d3ee; } .lose { color:#ef4444; }
+  .close-btn {
+    padding:12px 30px; border:none; border-radius:10px;
+    background:#26304d; color:#fff; font-weight:600; cursor:pointer;
+  }
+  .close-btn:hover { background:#313d61; }
+  @media(max-width:600px){
+    .logo{font-size:22px;} .balance{font-size:15px;padding:10px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🎁 Reward Centre</div>
+  <div class="balance">Баланс: <span id="balance">1000</span> ₽</div>
+</header>
+
+<main class="cases" id="cases"></main>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2 id="modalTitle">Открытие кейса</h2>
+    <div class="roulette"><div class="strip" id="strip"></div></div>
+    <div class="result" id="result"></div>
+    <button class="close-btn" id="closeBtn" disabled>Забрать</button>
+  </div>
+</div>
+
+<script>
+/* ============ Конфиг ============ */
+const START_BALANCE = 1000;
+const WIN_CHANCE = 0.75; // 75% в пользу игрока
+
+/* 30 кейсов */
+const CASES = [
+  {name:"Новичок",        emoji:"📦", price:50,   min:10,  max:120},
+  {name:"Бронза",         emoji:"🥉", price:100,  min:20,  max:250},
+  {name:"Серебро",        emoji:"🥈", price:200,  min:40,  max:500},
+  {name:"Золото",         emoji:"🥇", price:350,  min:80,  max:900},
+  {name:"Платина",        emoji:"💎", price:500,  min:120, max:1300},
+  {name:"Алмаз",          emoji:"💠", price:750,  min:200, max:2000},
+  {name:"Изумруд",        emoji:"💚", price:1000, min:300, max:2700},
+  {name:"Сапфир",         emoji:"🔷", price:1300, min:400, max:3500},
+  {name:"Рубин",          emoji:"❤️", price:1600, min:500, max:4300},
+  {name:"Аметист",        emoji:"💜", price:2000, min:600, max:5400},
+  {name:"Топаз",          emoji:"🧡", price:2500, min:800, max:6800},
+  {name:"Оникс",          emoji:"🖤", price:3000, min:1000,max:8100},
+  {name:"Лазурит",        emoji:"🔵", price:3600, min:1200,max:9700},
+  {name:"Малахит",        emoji:"🟢", price:4300, min:1500,max:11600},
+  {name:"Обсидиан",       emoji:"⬛", price:5100, min:1800,max:13800},
+  {name:"Кварц",          emoji:"⚪", price:6000, min:2100,max:16200},
+  {name:"Гранат",         emoji:"🍎", price:7000, min:2500,max:18900},
+  {name:"Циркон",         emoji:"✨", price:8200, min:2900,max:22100},
+  {name:"Хризолит",       emoji:"🍋", price:9600, min:3400,max:25900},
+  {name:"Аквамарин",      emoji:"💧", price:11000,min:3900,max:29700},
+  {name:"Турмалин",       emoji:"🌈", price:13000,min:4600,max:35100},
+  {name:"Флюорит",        emoji:"🔮", price:15000,min:5300,max:40500},
+  {name:"Опал",           emoji:"🌌", price:17500,min:6200,max:47200},
+  {name:"Пирит",          emoji:"🥇", price:20000,min:7100,max:54000},
+  {name:"Метеорит",       emoji:"☄️", price:23000,min:8200,max:62100},
+  {name:"Лунный камень",  emoji:"🌙", price:26000,min:9300,max:70200},
+  {name:"Солнечный камень",emoji:"☀️",price:30000,min:10700,max:81000},
+  {name:"Комета",         emoji:"🌠", price:35000,min:12500,max:94500},
+  {name:"Галактика",      emoji:"🌌", price:40000,min:14300,max:108000},
+  {name:"Reward Centre",  emoji:"👑", price:50000,min:18000,max:135000},
+];
+
+/* ============ Состояние ============ */
+let balance = Number(localStorage.getItem("rc_balance"));
+if (!balance || isNaN(balance)) balance = START_BALANCE;
+
+const $bal = document.getElementById("balance");
+const $cases = document.getElementById("cases");
+const $modal = document.getElementById("modal");
+const $strip = document.getElementById("strip");
+const $result = document.getElementById("result");
+const $close = document.getElementById("closeBtn");
+const $title = document.getElementById("modalTitle");
+
+function save() { localStorage.setItem("rc_balance", balance); }
+function renderBalance() { $bal.textContent = balance.toLocaleString("ru-RU"); }
+
+function renderCases() {
+  $cases.innerHTML = "";
+  CASES.forEach((c, i) => {
+    const div = document.createElement("div");
+    div.className = "case";
+    div.innerHTML = `
+      <div class="emoji">${c.emoji}</div>
+      <h3>${c.name}</h3>
+      <div class="price">Цена: ${c.price.toLocaleString("ru-RU")} ₽</div>
+      <button data-i="${i}">Открыть</button>
+    `;
+    div.querySelector("button").addEventListener("click", () => openCase(i));
+    $cases.appendChild(div);
+  });
+}
+
+function randWin(min, max) {
+  // 75% шанс выигрыша — приз между min и max
+  // 25% проигрыш — возврат 20-60% цены
+  return Math.floor(min + Math.random() * (max - min));
+}
+
+function buildStrip(c, prize) {
+  const items = [];
+  for (let i = 0; i < 40; i++) {
+    // случайный превью-приз для анимации
+    const p = Math.floor(c.min + Math.random() * (c.max - c.min));
+    items.push({ emoji: c.emoji, text: p.toLocaleString("ru-RU") + "₽" });
+  }
+  // победный слот в позиции 33
+  items[33] = { emoji: "💸", text: prize.toLocaleString("ru-RU") + "₽", win: prize > 0 };
+
+  $strip.innerHTML = "";
+  items.forEach(it => {
+    const el = document.createElement("div");
+    el.className = "item";
+    el.innerHTML = `${it.emoji}<small>${it.text}</small>`;
+    $strip.appendChild(el);
+  });
+  return 33;
+}
+
+function openCase(idx) {
+  const c = CASES[idx];
+  if (balance < c.price) {
+    alert("Недостаточно средств!");
+    return;
+  }
+  balance -= c.price;
+  save(); renderBalance();
+
+  const win = Math.random() < WIN_CHANCE;
+  let prize = 0;
+  if (win) prize = randWin(c.min, c.max);
+  else prize = Math.floor(c.price * (0.2 + Math.random() * 0.4)); // возврат 20-60%
+
+  $title.textContent = `Открытие: ${c.name}`;
+  $result.textContent = "";
+  $result.className = "result";
+  $close.disabled = true;
+  $modal.classList.add("show");
+
+  const winIdx = buildStrip(c, prize);
+  $strip.style.transition = "none";
+  $strip.style.transform = "translateX(0)";
+  void $strip.offsetWidth;
+
+  const itemW = 120; // 110 + 2*5
+  const offset = winIdx * itemW - (document.querySelector(".roulette").offsetWidth / 2 - itemW / 2);
+
+  requestAnimationFrame(() => {
+    $strip.style.transition = "transform 4s cubic-bezier(.15,.9,.15,1)";
+    $strip.style.transform = `translateX(-${offset}px)`;
+  });
+
+  setTimeout(() => {
+    balance += prize;
+    save(); renderBalance();
+    if (prize >= c.price) {
+      $result.textContent = `🎉 Выигрыш: +${prize.toLocaleString("ru-RU")} ₽`;
+      $result.classList.add("win");
+    } else {
+      $result.textContent = `😔 Возврат: +${prize.toLocaleString("ru-RU")} ₽`;
+      $result.classList.add("lose");
+    }
+    $close.disabled = false;
+  }, 4100);
+}
+
+$close.addEventListener("click", () => {
+  $modal.classList.remove("show");
+});
+
+/* init */
+renderBalance();
+renderCases();
+</script>
+</body>
+</html>
