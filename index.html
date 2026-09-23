@@ -24,37 +24,38 @@
   .auth-screen.hide{display:none;}
   .auth-box{
     background:linear-gradient(160deg,rgba(20,27,48,.95),rgba(13,18,32,.95));
-    border:1px solid #26304d;border-radius:24px;padding:36px 28px;
+    border:1px solid #26304d;border-radius:24px;padding:32px 26px;
     max-width:420px;width:100%;text-align:center;
     box-shadow:0 25px 60px rgba(0,0,0,.6);backdrop-filter:blur(14px);
   }
   .auth-box .brand{
-    font-size:32px;font-weight:900;margin-bottom:6px;
+    font-size:30px;font-weight:900;margin-bottom:6px;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#a78bfa,#22d3ee);
     background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:textFlow 6s ease infinite;
   }
   @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-  .auth-box .subtitle{color:#8b95b8;font-size:14px;margin-bottom:28px;}
-  .auth-box label{display:block;text-align:left;font-size:13px;color:#8b95b8;font-weight:600;margin-bottom:8px;margin-left:4px;}
+  .auth-box .subtitle{color:#8b95b8;font-size:13px;margin-bottom:22px;}
+  .auth-box label{display:block;text-align:left;font-size:12px;color:#8b95b8;font-weight:600;margin-bottom:6px;margin-left:4px;}
   .auth-box input{
-    width:100%;padding:14px 18px;border-radius:14px;
+    width:100%;padding:13px 16px;border-radius:12px;
     background:#0a0e1a;border:1px solid #26304d;color:#fff;
-    font-size:15px;font-weight:600;outline:none;transition:.2s;
+    font-size:14px;font-weight:600;outline:none;transition:.2s;
   }
   .auth-box input:focus{border-color:#7c5cff;box-shadow:0 0 0 3px rgba(124,92,255,.2);}
   .auth-box input::placeholder{color:#3f4a68;}
-  .auth-box .hint{font-size:12px;color:#5d6a8a;text-align:left;margin:8px 4px 20px;}
+  .auth-box .hint{font-size:11px;color:#5d6a8a;text-align:left;margin:6px 4px 14px;}
+  .auth-box .field{margin-bottom:14px;}
   .auth-box .err{color:#ef4444;font-size:13px;font-weight:600;margin-bottom:12px;min-height:18px;}
   .auth-btn{
-    width:100%;padding:15px;border:none;border-radius:14px;cursor:pointer;
-    font-size:16px;font-weight:800;color:#fff;
+    width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;
+    font-size:15px;font-weight:800;color:#fff;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#7c5cff);
     background-size:200% 100%;animation:btnFlow 5s ease infinite;
   }
   @keyframes btnFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .auth-btn:hover{filter:brightness(1.15);}
-  .switch-line{margin-top:20px;font-size:13px;color:#8b95b8;}
+  .switch-line{margin-top:18px;font-size:13px;color:#8b95b8;}
   .switch-line a{color:#22d3ee;text-decoration:none;font-weight:700;cursor:pointer;}
 
   /* ===== ХЕДЕР ===== */
@@ -151,6 +152,8 @@
   .drop-item .name{font-size:11px;color:#fff;font-weight:600;margin-bottom:2px;}
   .drop-item .sub{font-size:10px;color:#8b95b8;margin-bottom:4px;}
   .drop-item .val{font-size:11px;color:#22d3ee;font-weight:700;}
+  .drop-item.losing .val{color:#ef4444;}
+  .drop-item.winning .val{color:#84cc16;}
 
   .r-common{border-color:#3a4661;}
   .r-uncommon{border-color:#3b82f6;}
@@ -180,7 +183,7 @@
   .earn-box{
     background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(124,92,255,.15));
     border:2px solid #22d3ee;border-radius:18px;padding:20px;margin-bottom:14px;
-    text-align:center;cursor:pointer;transition:.2s;position:relative;overflow:hidden;
+    text-align:center;cursor:pointer;transition:.2s;
   }
   .earn-box:hover{border-color:#7c5cff;transform:translateY(-2px);
     box-shadow:0 10px 30px rgba(34,211,238,.25);}
@@ -188,93 +191,56 @@
   .earn-box .em{font-size:44px;display:block;margin-bottom:6px;}
   .earn-box .t{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;}
   .earn-box .d{font-size:12px;color:#8b95b8;}
-  .earn-box .earn-cd{
-    font-size:11px;color:#f59e0b;font-weight:700;margin-top:6px;
-  }
+  .earn-box .earn-cd{font-size:11px;color:#f59e0b;font-weight:700;margin-top:6px;}
 
-  /* ===== АПГРЕЙД — КРУГ КАК В MUSORDROP ===== */
+  /* ===== АПГРЕЙД ===== */
   .upg-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
-
   .wheel-container{
     position:relative;width:260px;height:280px;max-width:88vw;
     display:flex;justify-content:center;align-items:flex-start;
   }
-  /* Металлический внешний корпус */
   .wheel-frame{
     position:absolute;top:10px;left:50%;transform:translateX(-50%);
     width:230px;height:230px;border-radius:50%;
-    background:
-      radial-gradient(circle at 30% 20%, #6b5b3e 0%, #3d3426 40%, #2a2419 70%, #1a1610 100%);
-    box-shadow:
-      0 0 0 6px #1a1610,
-      0 0 0 8px #4a3f2b,
-      0 0 0 10px #2a2419,
-      0 10px 30px rgba(0,0,0,.7),
-      inset 0 4px 12px rgba(255,255,255,.1);
+    background:radial-gradient(circle at 30% 20%, #6b5b3e 0%, #3d3426 40%, #2a2419 70%, #1a1610 100%);
+    box-shadow:0 0 0 6px #1a1610,0 0 0 8px #4a3f2b,0 0 0 10px #2a2419,
+      0 10px 30px rgba(0,0,0,.7),inset 0 4px 12px rgba(255,255,255,.1);
     display:flex;align-items:center;justify-content:center;
   }
-  /* Внутренний круг с процентом */
   .wheel-core{
     position:relative;width:170px;height:170px;border-radius:50%;
     background:radial-gradient(circle at 40% 35%, #0e3524 0%, #061a12 70%, #000 100%);
-    box-shadow:
-      inset 0 0 30px rgba(0,0,0,.9),
-      inset 0 0 60px rgba(34,197,94,.15),
+    box-shadow:inset 0 0 30px rgba(0,0,0,.9),inset 0 0 60px rgba(34,197,94,.15),
       0 0 30px rgba(34,197,94,.3);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    border:3px solid #2a2419;
-    overflow:hidden;
+    border:3px solid #2a2419;overflow:hidden;
   }
-  /* Зелёное свечение-полоса вокруг цифры (как зона в MusorDrop) */
   .wheel-core::before{
     content:'';position:absolute;inset:6px;border-radius:50%;
-    border:4px solid transparent;
-    border-top-color:#84cc16;
-    border-right-color:#84cc16;
-    transform:rotate(-45deg);
-    filter:drop-shadow(0 0 8px #84cc16);
-    transition:border-color .3s;
+    border:4px solid transparent;border-top-color:#84cc16;border-right-color:#84cc16;
+    transform:rotate(-45deg);filter:drop-shadow(0 0 8px #84cc16);
   }
   .wheel-core .pct-txt{
-    position:relative;z-index:2;
-    font-size:38px;font-weight:900;line-height:1;
-    color:#84cc16;
-    text-shadow:0 0 15px rgba(132,204,22,.7), 0 0 30px rgba(132,204,22,.4);
-    font-family:'Segoe UI',sans-serif;
+    position:relative;z-index:2;font-size:38px;font-weight:900;line-height:1;
+    color:#84cc16;text-shadow:0 0 15px rgba(132,204,22,.7), 0 0 30px rgba(132,204,22,.4);
   }
   .wheel-core .pct-sub{
-    position:relative;z-index:2;
-    font-size:11px;color:#84cc16;margin-top:6px;font-weight:600;
-    opacity:.85;
+    position:relative;z-index:2;font-size:11px;color:#84cc16;margin-top:6px;font-weight:600;opacity:.85;
   }
-
-  /* Стрелка сверху (треугольник) */
-  .wheel-arrow{
-    position:absolute;top:-6px;left:50%;transform:translateX(-50%);
-    z-index:10;
-  }
-  .wheel-arrow svg{
-    filter:drop-shadow(0 0 8px #84cc16) drop-shadow(0 0 15px rgba(132,204,22,.6));
-  }
-
-  /* Вращающаяся стрелка-указатель ВОКРУГ колеса */
+  .wheel-arrow{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:10;}
   .wheel-pointer{
     position:absolute;top:10px;left:50%;
     width:230px;height:230px;margin-left:-115px;
-    transform-origin:50% 50%;
-    pointer-events:none;z-index:8;
+    transform-origin:50% 50%;pointer-events:none;z-index:8;
     transition:transform 4s cubic-bezier(.15,.85,.15,1);
   }
   .wheel-pointer::before{
     content:'';position:absolute;top:-10px;left:50%;
     width:0;height:0;transform:translateX(-50%);
-    border-left:11px solid transparent;
-    border-right:11px solid transparent;
-    border-bottom:22px solid #facc15;
-    filter:drop-shadow(0 0 8px #facc15);
+    border-left:11px solid transparent;border-right:11px solid transparent;
+    border-bottom:22px solid #facc15;filter:drop-shadow(0 0 8px #facc15);
   }
 
-  /* Слоты */
   .upg-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;
     max-width:560px;width:100%;margin-top:8px;}
   .upg-slot{
@@ -293,8 +259,7 @@
     color:#c8d1f0;font-weight:700;cursor:pointer;font-size:13px;transition:.2s;text-align:center;}
   .mult-btn small{display:block;font-size:10px;color:#8b95b8;font-weight:500;margin-top:2px;}
   .mult-btn:hover{border-color:#7c5cff;color:#fff;}
-  .mult-btn.active{background:linear-gradient(90deg,#84cc16,#22c55e);color:#fff;border-color:transparent;
-    box-shadow:0 5px 15px rgba(132,204,22,.4);}
+  .mult-btn.active{background:linear-gradient(90deg,#84cc16,#22c55e);color:#fff;border-color:transparent;}
   .mult-btn.active small{color:#e0ffd0;}
 
   .upg-go{width:100%;max-width:560px;padding:14px;border:none;border-radius:12px;font-size:15px;
@@ -320,12 +285,12 @@
   .modal.show{display:flex;}
   .modal-box{background:linear-gradient(160deg,#0f1526,#141b30);border:1px solid #26304d;
     border-radius:20px;padding:20px;max-width:620px;width:100%;max-height:92vh;overflow-y:auto;
-    text-align:center;}
-  .modal-box h2{font-size:16px;margin-bottom:6px;color:#8b95b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+    text-align:center;position:relative;}
+  .modal-box h2{font-size:15px;margin-bottom:6px;color:#8b95b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
   .modal-box h3{font-size:20px;margin-bottom:14px;color:#fff;}
   .close-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
-    background:#1a2338;border:1px solid #26304d;color:#c8d1f0;font-size:18px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;font-weight:700;}
+    background:#1a2338;border:1px solid #26304d;color:#c8d1f0;font-size:16px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-weight:700;z-index:5;}
   .multi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(95px,1fr));gap:8px;margin-bottom:16px;}
   .multi-item{background:#0a0e1a;border:2px solid #26304d;border-radius:12px;padding:10px 4px;
     display:flex;flex-direction:column;align-items:center;gap:4px;animation:pop .35s ease backwards;}
@@ -334,7 +299,7 @@
   .multi-item .nm{font-size:10px;color:#c8d1f0;font-weight:600;text-align:center;line-height:1.1;}
   .multi-item .v{font-size:11px;font-weight:700;color:#22d3ee;margin-top:2px;}
 
-  .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+  .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
   .stat-box{background:#0a0e1a;border:1px solid #26304d;border-radius:12px;padding:12px;}
   .stat-box .lbl{font-size:11px;color:#8b95b8;margin-bottom:4px;text-transform:uppercase;}
   .stat-box .num{font-size:18px;font-weight:800;}
@@ -349,7 +314,7 @@
   .mbtn.green{background:linear-gradient(90deg,#22c55e,#84cc16);}
   .mbtn.gray{background:#26304d;}
 
-  /* ===== НИЖНЕЕ МЕНЮ (ФИКСИРОВАНО) ===== */
+  /* ===== НИЖНЕЕ МЕНЮ ===== */
   .nav{
     flex-shrink:0;display:flex;justify-content:space-around;align-items:center;
     background:rgba(10,14,26,.95);backdrop-filter:blur(14px);
@@ -395,10 +360,19 @@
 <div class="auth-screen" id="authScreen">
   <div class="auth-box">
     <div class="brand">💀 Reward Centre</div>
-    <div class="subtitle">Создай аккаунт и начни подниматься</div>
-    <label for="nickInput">Твой никнейм</label>
-    <input id="nickInput" type="text" placeholder="Например: ShadowKiller" maxlength="16" autocomplete="off"/>
-    <div class="hint">3–16 символов · буквы, цифры, _ · ник уникален</div>
+    <div class="subtitle" id="authSubtitle">Создай аккаунт и начни подниматься</div>
+
+    <div class="field">
+      <label for="nickInput">Никнейм</label>
+      <input id="nickInput" type="text" placeholder="ShadowKiller" maxlength="16" autocomplete="username"/>
+    </div>
+
+    <div class="field">
+      <label for="passInput">Пароль</label>
+      <input id="passInput" type="password" placeholder="••••••" maxlength="32" autocomplete="current-password"/>
+      <div class="hint">4–32 символа. Не забудь его!</div>
+    </div>
+
     <div class="err" id="authErr"></div>
     <button class="auth-btn" id="authBtn">СОЗДАТЬ АККАУНТ</button>
     <div class="switch-line">Уже играл? <a id="loginMode">Войти в аккаунт</a></div>
@@ -415,13 +389,11 @@
 </header>
 
 <div class="content">
-  <!-- ЛОББИ -->
   <div class="screen active" id="screen-cases">
     <div class="screen-title">📦 Кейсы</div>
     <div class="cases-grid" id="casesGrid"></div>
   </div>
 
-  <!-- ЭКРАН КЕЙСА -->
   <div class="screen" id="screen-case">
     <button class="back-btn" onclick="showScreen('cases')">← Назад</button>
     <div class="case-hero">
@@ -443,18 +415,14 @@
     </div>
   </div>
 
-  <!-- ИНВЕНТАРЬ -->
   <div class="screen" id="screen-inv">
     <div class="screen-title">🎒 Инвентарь</div>
-
-    <!-- Кнопка поднятия голды -->
     <div class="earn-box" id="earnBox">
       <span class="em">💰</span>
       <div class="t">Поднять голду</div>
       <div class="d">+1 ₽ в час · до 1000 ₽ · жми когда готов забрать</div>
       <div class="earn-cd" id="earnCd"></div>
     </div>
-
     <div class="inv-header">
       <div class="inv-summary">Предметов: <span id="invCount">0</span> · Стоимость: <span id="invTotal">0</span> ₽</div>
       <button class="sell-all" id="sellAll">ПРОДАТЬ ВСЁ</button>
@@ -463,26 +431,21 @@
     <div class="empty" id="invEmpty">🎒 Инвентарь пуст. Открой кейсы!</div>
   </div>
 
-  <!-- АПГРЕЙД -->
   <div class="screen" id="screen-upg">
     <div class="screen-title">⬆️ Апгрейд</div>
-
     <div class="upg-wrap">
       <div class="wheel-container">
-        <!-- Корпус -->
         <div class="wheel-frame">
           <div class="wheel-core">
             <div class="pct-txt" id="upgChance">50%</div>
             <div class="pct-sub">шанс апгрейда</div>
           </div>
         </div>
-        <!-- Верхний треугольник -->
         <div class="wheel-arrow">
           <svg width="34" height="26" viewBox="0 0 34 26">
             <polygon points="17,2 32,24 2,24" fill="#84cc16" stroke="#0a0e1a" stroke-width="2"/>
           </svg>
         </div>
-        <!-- Вращающийся указатель -->
         <div class="wheel-pointer" id="upgPointer"></div>
       </div>
 
@@ -510,16 +473,14 @@
   </div>
 </div>
 
-<!-- НИЖНЕЕ МЕНЮ -->
 <nav class="nav" id="navBar" style="display:none;">
   <button class="nav-btn active" data-screen="cases"><span class="ic">📦</span>Кейсы</button>
   <button class="nav-btn" data-screen="upg"><span class="ic">⬆️</span>Апгрейд</button>
   <button class="nav-btn" data-screen="inv"><span class="ic">🎒</span>Инвентарь</button>
 </nav>
 
-<!-- МОДАЛКА РЕЗУЛЬТАТОВ -->
 <div class="modal" id="modal">
-  <div class="modal-box" style="position:relative;">
+  <div class="modal-box">
     <button class="close-x" id="closeX">✕</button>
     <h2 id="modalSub">ВСКРЫТО 1</h2>
     <h3 id="modalTitle">Кейс</h3>
@@ -564,7 +525,6 @@ const RARITY = {
 
 const GUN_ICONS = ["🔫","💥","🎯","⚔️","🗡️","🪓","🛡️","🏹"];
 
-/* Убрал "Бесплатный" */
 const CASES = [
   {name:"Стартовый ящик", emoji:"🧰", price:99,    min:10,   max:120},
   {name:"Летний набор",   emoji:"🌴", price:199,   min:20,   max:250},
@@ -599,21 +559,35 @@ const CASES = [
 
 const SKIN_NAMES = ["Lifted","Sakkaku","Resupply","Ensnared","Run and Hide","Fade","Modern Hunter",
                     "Neon Rider","Blood Sport","Golden Coil","Frostbite","Hyper Beast","Dragon Lore"];
+
+/* 3 проигрышных + 4 выигрышных скина */
 function buildSkins(c){
-  const chances   = [0.1, 0.5, 1.5, 5,  12,  30,  50.9];
-  const rarityKey = ["legend","epic","epic","rare","rare","uncommon","common"];
-  const mults     = [30, 15, 8, 4, 2.5, 1.8, 1.2];
+  const chances   = [40, 20, 15,  10,  8,  5,  2];
+  const rarityKey = ["common","common","uncommon","rare","epic","epic","legend"];
+  const mults     = [0.15, 0.3, 0.6,  1.3,  2,  4,  12];
+
   const skins = [];
   for (let i = 0; i < 7; i++){
-    const base = Math.max(c.price, c.min);
-    const jitter = 0.85 + Math.random() * 0.3;
+    const base = c.price;
+    const jitter = 0.9 + Math.random() * 0.2;
     let price = Math.floor(base * mults[i] * jitter);
-    if (price < c.min) price = c.min;
-    if (price > c.max) price = c.max;
+
+    if (i < 3){
+      const maxLoss = Math.floor(c.price * 0.85);
+      if (price > maxLoss) price = maxLoss;
+      if (price < 1) price = 1;
+    } else {
+      const minWin = Math.ceil(c.price * 1.1);
+      if (price < minWin) price = minWin;
+      if (price > c.max) price = c.max;
+    }
+
     skins.push({
       name: SKIN_NAMES[(i + c.name.length) % SKIN_NAMES.length] + " " + c.name,
       gun: GUN_ICONS[(i + c.name.length) % GUN_ICONS.length],
-      rarity: rarityKey[i], chance: chances[i], price: price
+      rarity: rarityKey[i],
+      chance: chances[i],
+      price: price
     });
   }
   return skins;
@@ -637,10 +611,10 @@ let currentCase = null;
 let currentCount = 1;
 let upgSelected = null;
 let upgMult = 2;
-let lastResults = [];       // последние открытые предметы
-let lastSpent = 0;          // сколько потратил в последнем открытии
-let earnClaimedAt = 0;      // когда последний раз забирал голду
-let earnAccumulated = 0;    // накопленная голда
+let lastResults = [];
+let lastSpent = 0;
+let earnClaimedAt = 0;
+let earnAccumulated = 0;
 
 const $ = id => document.getElementById(id);
 function userKey(s){ return `rc_${currentUser}_${s}`; }
@@ -675,11 +649,13 @@ function showToast(text, type="error"){
   clearTimeout(t._t);
   t._t = setTimeout(()=>t.classList.remove("show"), 2400);
 }
- /* ============================================================
-   АВТОРИЗАЦИЯ
+
+/* ============================================================
+   АВТОРИЗАЦИЯ (с паролем)
 ============================================================ */
 const authScreen = $("authScreen");
 const nickInput = $("nickInput");
+const passInput = $("passInput");
 const authBtn = $("authBtn");
 const authErr = $("authErr");
 const loginModeLink = $("loginMode");
@@ -689,32 +665,40 @@ loginModeLink.addEventListener("click", ()=>{
   isLoginMode = !isLoginMode;
   authBtn.textContent = isLoginMode ? "ВОЙТИ" : "СОЗДАТЬ АККАУНТ";
   loginModeLink.textContent = isLoginMode ? "Создать аккаунт" : "Войти в аккаунт";
-  document.querySelector(".auth-box .subtitle").textContent =
-    isLoginMode ? "Введи свой ник и продолжай играть" : "Создай аккаунт и начни подниматься";
+  $("authSubtitle").textContent =
+    isLoginMode ? "Введи ник и пароль" : "Создай аккаунт и начни подниматься";
   authErr.textContent = "";
 });
 
 authBtn.addEventListener("click", ()=>{
   const nick = nickInput.value.trim();
+  const pass = passInput.value;
   authErr.textContent = "";
-  if (!nick){ authErr.textContent = "Введи ник!"; return; }
-  if (nick.length < 3 || nick.length > 16){ authErr.textContent = "3–16 символов"; return; }
-  if (!/^[a-zA-Z0-9_а-яА-ЯёЁ]+$/.test(nick)){ authErr.textContent = "Только буквы, цифры и _"; return; }
 
-  const users = getAllUsers();
+  if (!nick){ authErr.textContent = "Введи ник!"; return; }
+  if (nick.length < 3 || nick.length > 16){ authErr.textContent = "Ник: 3–16 символов"; return; }
+  if (!/^[a-zA-Z0-9_а-яА-ЯёЁ]+$/.test(nick)){ authErr.textContent = "Только буквы, цифры и _"; return; }
+  if (!pass){ authErr.textContent = "Введи пароль!"; return; }
+  if (pass.length < 4 || pass.length > 32){ authErr.textContent = "Пароль: 4–32 символа"; return; }
+
+  const users = getAllUsers(); // [{nick, pass}]
   const lower = nick.toLowerCase();
-  const exists = users.find(u => u.toLowerCase() === lower);
+  const found = users.find(u => u.nick.toLowerCase() === lower);
 
   if (isLoginMode){
-    if (!exists){ authErr.textContent = "Такого аккаунта нет!"; return; }
-    loginUser(exists);
+    if (!found){ authErr.textContent = "Такого аккаунта нет!"; return; }
+    if (found.pass !== pass){ authErr.textContent = "Неверный пароль!"; return; }
+    loginUser(found.nick);
   } else {
-    if (exists){ authErr.textContent = "Ник уже занят!"; return; }
-    users.push(nick); saveUsers(users); loginUser(nick);
+    if (found){ authErr.textContent = "Ник уже занят!"; return; }
+    users.push({ nick: nick, pass: pass });
+    saveUsers(users);
+    loginUser(nick);
   }
 });
 
-nickInput.addEventListener("keydown", e=>{ if(e.key==="Enter") authBtn.click(); });
+nickInput.addEventListener("keydown", e=>{ if(e.key==="Enter") passInput.focus(); });
+passInput.addEventListener("keydown", e=>{ if(e.key==="Enter") authBtn.click(); });
 
 function loginUser(nick){
   currentUser = nick;
@@ -738,21 +722,13 @@ $("userBadge").addEventListener("click", ()=>{
     $("navBar").style.display = "none";
     document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
     $("screen-cases").classList.add("active");
-    nickInput.value = ""; authErr.textContent = "";
+    nickInput.value = ""; passInput.value = ""; authErr.textContent = "";
   }
 });
 
-(function autoLogin(){
-  const saved = localStorage.getItem("rc_current_user");
-  if (saved){
-    const users = getAllUsers();
-    const m = users.find(u => u.toLowerCase() === saved.toLowerCase());
-    if (m){ loginUser(m); return; }
-  }
-  nickInput.focus();
-})();
-
-/* ============================================================
+/* НЕ авто-входим без пароля — надо будет вводить заново */
+nickInput.focus();
+ /* ============================================================
    НАВИГАЦИЯ
 ============================================================ */
 function showScreen(name){
@@ -817,27 +793,29 @@ function renderDropList(c){
   $("dropTitle").textContent = "Содержимое кейса · " + c.skins.length + " предметов";
   const g = $("dropItems");
   g.innerHTML = "";
-  [...c.skins].sort((a,b)=>a.chance-b.chance).forEach(s=>{
+  const sorted = [...c.skins].sort((a,b)=>a.chance-b.chance);
+  sorted.forEach(s=>{
     const r = RARITY[s.rarity];
+    const lose = s.price < c.price;
     const el = document.createElement("div");
-    el.className = "drop-item " + r.class;
+    el.className = "drop-item " + r.class + (lose ? " losing" : " winning");
     el.innerHTML = `
       <div class="pct">${s.chance}%</div>
       <span class="gun">${s.gun}</span>
       <div class="name">${s.name}</div>
       <div class="sub">${r.label}</div>
-      <div class="val">${fmt(s.price)} ₽</div>
+      <div class="val">${lose ? "🔴 " : "🟢 "}${fmt(s.price)} ₽</div>
     `;
     g.appendChild(el);
   });
 }
 
-$("openBtn").addEventListener("click", ()=>{
+/* Открытие N кейсов — одна функция */
+function openCases(){
   const c = CASES[currentCase];
   const total = c.price * currentCount;
-  if (balance < total){ showToast(`Недостаточно средств! Нужно ${fmt(total)} ₽`); return; }
-  balance -= total;
-  save(); renderBalance();
+  if (balance < total){ showToast(`Недостаточно средств! Нужно ${fmt(total)} ₽`); return false; }
+  balance -= total; save(); renderBalance();
 
   const results = [];
   for (let i=0;i<currentCount;i++){
@@ -847,29 +825,32 @@ $("openBtn").addEventListener("click", ()=>{
       acc += s.chance;
       if (rnd <= acc){ chosen = s; break; }
     }
-    results.push(chosen);
+    results.push({
+      id: Date.now() + Math.random() + i,
+      name: chosen.name, gun: chosen.gun, rarity: chosen.rarity, price: chosen.price
+    });
   }
-
-  const items = results.map(s => ({
-    id: Date.now() + Math.random(),
-    name: s.name, gun: s.gun, rarity: s.rarity, price: s.price
-  }));
-  inventory.push(...items);
+  inventory.push(...results);
   save();
-
-  lastResults = items;
+  lastResults = results;
   lastSpent = total;
-  showResults(items, c);
+  return true;
+}
+
+$("openBtn").addEventListener("click", ()=>{
+  if (openCases()) showResults();
 });
 
-function showResults(items, c){
-  const totalGot = items.reduce((s, i)=>s+i.price, 0);
-  $("modalSub").textContent = `Вскрыто ${items.length}`;
+function showResults(){
+  const c = CASES[currentCase];
+  const totalGot = lastResults.reduce((s, i)=>s+i.price, 0);
+
+  $("modalSub").textContent = `Вскрыто ${lastResults.length}`;
   $("modalTitle").textContent = c.name;
 
   const g = $("multiGrid");
   g.innerHTML = "";
-  items.forEach((it, i)=>{
+  lastResults.forEach((it, i)=>{
     const r = RARITY[it.rarity];
     const el = document.createElement("div");
     el.className = "multi-item " + r.class;
@@ -886,52 +867,30 @@ function showResults(items, c){
   $("statGot").textContent = fmt(totalGot) + " ₽";
 
   const diff = totalGot - lastSpent;
-  const diffBox = $("statDiffBox");
-  const diffEl = $("statDiff");
-  diffEl.textContent = (diff >= 0 ? "+" : "") + fmt(diff) + " ₽";
-  diffBox.className = "stat-box " + (diff >= 0 ? "plus" : "minus");
-  diffBox.style.marginBottom = "14px";
+  $("statDiff").textContent = (diff >= 0 ? "+" : "") + fmt(diff) + " ₽";
+  $("statDiffBox").className = "stat-box " + (diff >= 0 ? "plus" : "minus");
+  $("statDiffBox").style.marginBottom = "14px";
 
-  $("againBtn").textContent = `ОТКРЫТЬ ЕЩЁ ×${items.length}`;
+  $("againBtn").textContent = `ОТКРЫТЬ ЕЩЁ ×${lastResults.length}`;
   $("sellAllModalBtn").textContent = `ПРОДАТЬ ВСЁ ЗА ${fmt(totalGot)} ₽`;
 
   $("modal").classList.add("show");
 }
 
-/* Кнопка "Открыть ещё" */
+/* Кнопка "Открыть ещё" — работает без залипаний */
 $("againBtn").addEventListener("click", ()=>{
-  $("modal").classList.remove("show");
-  // Повторно открываем тот же кейс и то же количество
-  const c = CASES[currentCase];
-  const total = c.price * currentCount;
-  if (balance < total){
-    showToast(`Недостаточно средств! Нужно ${fmt(total)} ₽`);
-    return;
+  if (openCases()){
+    showResults();
   }
-  balance -= total; save(); renderBalance();
-  const results = [];
-  for (let i=0;i<currentCount;i++){
-    const rnd = Math.random() * 100;
-    let acc = 0, chosen = c.skins[c.skins.length-1];
-    for (const s of [...c.skins].sort((a,b)=>b.chance-a.chance)){
-      acc += s.chance;
-      if (rnd <= acc){ chosen = s; break; }
-    }
-    results.push(chosen);
-  }
-  const items = results.map(s => ({
-    id: Date.now() + Math.random(),
-    name: s.name, gun: s.gun, rarity: s.rarity, price: s.price
-  }));
-  inventory.push(...items); save();
-  lastResults = items; lastSpent = total;
-  showResults(items, c);
 });
 
-/* Кнопка "Продать всё" из модалки */
+/* Продать всё из модалки */
 $("sellAllModalBtn").addEventListener("click", ()=>{
+  if (!lastResults.length){
+    $("modal").classList.remove("show");
+    return;
+  }
   const total = lastResults.reduce((s, i)=>s+i.price, 0);
-  // удаляем эти предметы из инвентаря
   const ids = new Set(lastResults.map(i=>i.id));
   inventory = inventory.filter(i => !ids.has(i.id));
   balance += total; save(); renderBalance();
@@ -995,12 +954,12 @@ $("sellAll").addEventListener("click", ()=>{
   save(); renderBalance(); renderInventory();
   showToast(`Продано всё: +${fmt(total)} ₽`, "success");
 });
- /* ============================================================
-   ПОДНЯТИЕ ГОЛДЫ (1₽/час, макс 1000₽)
+
+/* ============================================================
+   ПОДНЯТИЕ ГОЛДЫ
 ============================================================ */
-const EARN_PER_HOUR = 1;        // 1₽ в час
-const EARN_MAX = 1000;          // максимум 1000₽
-const EARN_TICK_MS = 60 * 1000; // каждую минуту накапываем по чуть-чуть
+const EARN_PER_HOUR = 1;
+const EARN_MAX = 1000;
 
 function calcEarned(){
   const elapsedMs = Date.now() - earnClaimedAt;
@@ -1016,7 +975,6 @@ function renderEarn(){
   if (earned >= EARN_MAX){
     cd.textContent = `💰 Максимум! Жми чтобы забрать ${fmt(EARN_MAX)} ₽`;
   } else {
-    const next = Math.min(earned + EARN_PER_HOUR, EARN_MAX);
     cd.textContent = `Накоплено: ${earned.toFixed(2)} ₽ · +${EARN_PER_HOUR} ₽/час`;
   }
 }
@@ -1030,10 +988,7 @@ function startEarnTimer(){
 
 $("earnBox").addEventListener("click", ()=>{
   const earned = Math.floor(calcEarned());
-  if (earned <= 0){
-    showToast("Пока нечего забирать. Приходи позже!", "info");
-    return;
-  }
+  if (earned <= 0){ showToast("Пока нечего забирать. Приходи позже!", "info"); return; }
   balance += earned;
   earnAccumulated = 0;
   earnClaimedAt = Date.now();
@@ -1049,13 +1004,9 @@ function updateUpgradeUI(){
   $("upgChance").textContent = pct + "%";
 }
 
-/* Вращение указателя вокруг колеса */
 function spinPointer(win){
   const pointer = $("upgPointer");
   const pct = UPGRADES[upgMult].chance;
-
-  // Указатель сверху = 0°. Зона WIN — верхние pct*360° по часовой
-  // Зона LOSE — остальное
   let targetDeg;
   if (win){
     const zone = pct * 360;
@@ -1065,7 +1016,7 @@ function spinPointer(win){
     const zone = 360 - zoneStart;
     targetDeg = zoneStart + zone * 0.1 + Math.random() * zone * 0.8;
   }
-  targetDeg += 360 * 5; // 5 оборотов
+  targetDeg += 360 * 5;
 
   pointer.style.transition = "none";
   pointer.style.transform = "rotate(0deg)";
