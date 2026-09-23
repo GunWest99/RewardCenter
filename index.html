@@ -1109,5 +1109,35 @@ $("upgGo").addEventListener("click", ()=>{
   }, 4200);
 });
 </script>
+ </script>
+
+<!-- 🧪 ВРЕМЕННЫЙ ТЕСТ — удалить потом -->
+<div id="t" style="font:16px monospace;padding:20px;color:#fff;background:#000;min-height:100vh">
+  <div id="r1">1. JS работает? ⏳</div>
+  <div id="r2">2. localStorage работает? ⏳</div>
+  <div id="r3">3. Клик работает? ⏳</div>
+  <button id="b" style="margin-top:20px;padding:15px 30px;font-size:18px">НАЖМИ МЕНЯ</button>
+</div>
+<script>
+  document.getElementById("r1").textContent = "1. JS работает? ✅ ДА";
+  document.getElementById("r1").style.color = "#0f0";
+  try {
+    localStorage.setItem("test","1");
+    localStorage.removeItem("test");
+    document.getElementById("r2").textContent = "2. localStorage работает? ✅ ДА";
+    document.getElementById("r2").style.color = "#0f0";
+  } catch(e) {
+    document.getElementById("r2").textContent = "2. localStorage ❌ НЕТ: " + e.name;
+    document.getElementById("r2").style.color = "#f00";
+  }
+  document.getElementById("b").addEventListener("click", ()=>{
+    document.getElementById("r3").textContent = "3. Клик работает? ✅ ДА";
+    document.getElementById("r3").style.color = "#0f0";
+  });
+</script>
+<!-- 🧪 КОНЕЦ ТЕСТА -->
+
+</body>
+</html>
 </body>
 </html>
