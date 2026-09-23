@@ -382,6 +382,33 @@
 <header>
   <div class="logo">💀 Reward Centre</div>
   <div class="user-badge" id="userBadge">
+    <div cl
+
+<!-- ЭКРАН РЕГИСТРАЦИИ -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-box">
+    <div class="brand">💀 Reward Centre</div>
+    <div class="subtitle" id="authSubtitle">Создай аккаунт и начни подниматься</div>
+
+    <div class="field">
+      <label for="nickInput">Никнейм</label>
+      <input id="nickInput" type="text" placeholder="ShadowKiller" maxlength="16" autocomplete="username"/>
+    </div>
+   <div class="field">
+      <label for="passInput">Пароль</label>
+      <input id="passInput" type="password" placeholder="••••••" maxlength="32" autocomplete="current-password"/>
+      <div class="hint">4–32 символа. Не забудь его!</div>
+    </div>
+
+    <div class="err" id="authErr"></div>
+    <button class="auth-btn" id="authBtn">СОЗДАТЬ АККАУНТ</button>
+    <div class="switch-line">Уже играл? <a id="loginMode">Войти в аккаунт</a></div>
+  </div>
+</div>
+
+<header>
+  <div class="logo">💀 Reward Centre</div>
+  <div class="user-badge" id="userBadge">
     <div class="avatar" id="userAvatar">?</div>
     <div class="uname" id="userName">—</div>
   </div>
@@ -511,6 +538,15 @@
 
 <script>
 /* ============================================================
+   БЕЗОПАСНОЕ ХРАНИЛИЩЕ — не падает, если localStorage запрещён
+============================================================ */
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k, v){ try { localStorage.setItem(k, v); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+
+/* ============================================================
    ДАННЫЕ
 ============================================================ */
 const START_BALANCE = 1000;
@@ -619,23 +655,25 @@ let earnAccumulated = 0;
 const $ = id => document.getElementById(id);
 function userKey(s){ return `rc_${currentUser}_${s}`; }
 
+/* ===== Сохранение / загрузка — через безопасный store ===== */
 function save(){
   if (!currentUser) return;
-  localStorage.setItem(userKey("balance"), balance);
-  localStorage.setItem(userKey("inv"), JSON.stringify(inventory));
-  localStorage.setItem(userKey("earnAt"), earnClaimedAt);
-  localStorage.setItem(userKey("earnAcc"), earnAccumulated);
+  store.set(userKey("balance"), balance);
+  store.set(userKey("inv"), JSON.stringify(inventory));
+  store.set(userKey("earnAt"), earnClaimedAt);
+  store.set(userKey("earnAcc"), earnAccumulated);
 }
 function load(){
   if (!currentUser) return;
-  const b = Number(localStorage.getItem(userKey("balance")));
+  const b = Number(store.get(userKey("balance")));
   balance = (!b || isNaN(b)) ? START_BALANCE : b;
-  try { inventory = JSON.parse(localStorage.getItem(userKey("inv"))) || []; } catch(e){ inventory = []; }
-  earnClaimedAt = Number(localStorage.getItem(userKey("earnAt"))) || Date.now();
-  earnAccumulated = Number(localStorage.getItem(userKey("earnAcc"))) || 0;
+  try { inventory = JSON.parse(store.get(userKey("inv"))) || []; } catch(e){ inventory = []; }
+  earnClaimedAt = Number(store.get(userKey("earnAt"))) || Date.now();
+  earnAccumulated = Number(store.get(userKey("earnAcc"))) || 0;
 }
-function getAllUsers(){ try { return JSON.parse(localStorage.getItem("rc_users")) || []; } catch(e){ return []; } }
-function saveUsers(a){ localStorage.setItem("rc_users", JSON.stringify(a)); }
+function getAllUsers(){ try { return JSON.parse(store.get("rc_users")) || []; } catch(e){ return []; } }
+function saveUsers(a){ store.set("rc_users", JSON.stringify(a)); }
+
 function fmt(n){ return n.toLocaleString("ru-RU"); }
 
 function showToast(text, type="error"){
@@ -681,7 +719,7 @@ authBtn.addEventListener("click", ()=>{
   if (!pass){ authErr.textContent = "Введи пароль!"; return; }
   if (pass.length < 4 || pass.length > 32){ authErr.textContent = "Пароль: 4–32 символа"; return; }
 
-  const users = getAllUsers(); // [{nick, pass}]
+  const users = getAllUsers();
   const lower = nick.toLowerCase();
   const found = users.find(u => u.nick.toLowerCase() === lower);
 
@@ -702,7 +740,7 @@ passInput.addEventListener("keydown", e=>{ if(e.key==="Enter") authBtn.click(); 
 
 function loginUser(nick){
   currentUser = nick;
-  localStorage.setItem("rc_current_user", nick);
+  store.set("rc_current_user", nick);
   load();
   authScreen.classList.add("hide");
   $("navBar").style.display = "flex";
@@ -716,7 +754,7 @@ function loginUser(nick){
 
 $("userBadge").addEventListener("click", ()=>{
   if (confirm("Выйти из аккаунта?")){
-    save(); localStorage.removeItem("rc_current_user");
+    save(); store.del("rc_current_user");
     currentUser = null; balance = START_BALANCE; inventory = [];
     authScreen.classList.remove("hide");
     $("navBar").style.display = "none";
@@ -726,8 +764,9 @@ $("userBadge").addEventListener("click", ()=>{
   }
 });
 
-/* НЕ авто-входим без пароля — надо будет вводить заново */
 nickInput.focus();
+
+    
  /* ============================================================
    НАВИГАЦИЯ
 ============================================================ */
