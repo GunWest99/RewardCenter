@@ -2,14 +2,16 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Reward Centre</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;}
+  html,body{overflow-x:hidden;}
   body{
-    color:#e6ecff;min-height:100vh;padding-bottom:90px;
+    color:#e6ecff;min-height:100vh;min-height:100dvh;padding-bottom:80px;
     background:linear-gradient(-45deg,#0b0f1c,#1b2340,#2a1b4a,#10263d);
     background-size:400% 400%;animation:bg 18s ease infinite;
+    background-attachment:fixed;
   }
   @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
@@ -36,10 +38,7 @@
   }
   @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .auth-box .subtitle{color:#8b95b8;font-size:14px;margin-bottom:28px;}
-  .auth-box label{
-    display:block;text-align:left;font-size:13px;color:#8b95b8;
-    font-weight:600;margin-bottom:8px;margin-left:4px;
-  }
+  .auth-box label{display:block;text-align:left;font-size:13px;color:#8b95b8;font-weight:600;margin-bottom:8px;margin-left:4px;}
   .auth-box input{
     width:100%;padding:14px 18px;border-radius:14px;
     background:#0a0e1a;border:1px solid #26304d;color:#fff;
@@ -53,8 +52,7 @@
     width:100%;padding:15px;border:none;border-radius:14px;cursor:pointer;
     font-size:16px;font-weight:800;color:#fff;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#7c5cff);
-    background-size:200% 100%;animation:btnFlow 5s ease infinite;
-    transition:.2s;
+    background-size:200% 100%;animation:btnFlow 5s ease infinite;transition:.2s;
   }
   @keyframes btnFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .auth-btn:hover{filter:brightness(1.15);box-shadow:0 10px 30px rgba(124,92,255,.4);}
@@ -66,84 +64,91 @@
   /* ===== ХЕДЕР ===== */
   header{
     display:flex;justify-content:space-between;align-items:center;
-    padding:12px 16px;position:sticky;top:0;z-index:50;
-    background:rgba(10,14,26,.85);backdrop-filter:blur(14px);
-    border-bottom:1px solid #1e2742;gap:10px;
+    padding:8px 10px;position:sticky;top:0;z-index:50;
+    background:rgba(10,14,26,.92);backdrop-filter:blur(14px);
+    border-bottom:1px solid #1e2742;gap:6px;width:100%;
   }
-  .logo{font-size:18px;font-weight:800;letter-spacing:.5px;
+  .logo{font-size:15px;font-weight:800;letter-spacing:.3px;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#a78bfa,#22d3ee);
     background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:textFlow 8s ease infinite;white-space:nowrap;}
+    animation:textFlow 8s ease infinite;white-space:nowrap;flex-shrink:0;}
+  .logo .logo-txt{margin-left:2px;}
   .user-badge{
-    display:flex;align-items:center;gap:8px;background:#131a2e;
-    padding:6px 12px;border-radius:12px;border:1px solid #26304d;
-    cursor:pointer;transition:.2s;flex-shrink:0;
+    display:flex;align-items:center;gap:6px;background:#131a2e;
+    padding:5px 8px;border-radius:10px;border:1px solid #26304d;
+    cursor:pointer;transition:.2s;flex:0 1 auto;min-width:0;
   }
   .user-badge:hover{border-color:#7c5cff;}
   .user-badge .avatar{
-    width:28px;height:28px;border-radius:50%;
+    width:24px;height:24px;border-radius:50%;flex-shrink:0;
     background:linear-gradient(135deg,#7c5cff,#22d3ee);
     display:flex;align-items:center;justify-content:center;
-    font-weight:900;font-size:13px;color:#fff;
+    font-weight:900;font-size:12px;color:#fff;
   }
-  .user-badge .uname{font-size:13px;font-weight:700;color:#e6ecff;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .balance{display:flex;align-items:center;gap:6px;background:#131a2e;
-    padding:8px 12px;border-radius:12px;border:1px solid #26304d;font-weight:700;font-size:14px;}
-  .balance::before{content:'💎';font-size:12px;}
-  .balance span{color:#22d3ee;}
+  .user-badge .uname{font-size:12px;font-weight:700;color:#e6ecff;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .balance{display:flex;align-items:center;gap:5px;background:#131a2e;
+    padding:6px 9px;border-radius:10px;border:1px solid #26304d;
+    font-weight:700;font-size:13px;flex-shrink:0;white-space:nowrap;}
+  .balance::before{content:'💎';font-size:11px;}
+  .balance #balance{color:#22d3ee;max-width:80px;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:bottom;}
+  @media (max-width:420px){
+    .logo .logo-txt{display:none;}
+    .user-badge .uname{max-width:50px;}
+    .balance #balance{max-width:60px;}
+  }
 
   /* ===== ЭКРАНЫ ===== */
-  .screen{display:none;padding:16px;max-width:1200px;margin:0 auto;}
+  .screen{display:none;padding:14px;max-width:1200px;margin:0 auto;}
   .screen.active{display:block;animation:fade .3s ease;}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .screen-title{font-size:20px;font-weight:800;margin-bottom:16px;color:#fff;}
+  .screen-title{font-size:19px;font-weight:800;margin-bottom:14px;color:#fff;}
 
   /* ===== КЕЙСЫ ===== */
-  .cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+  .cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
   .case-card{
     background:linear-gradient(160deg,rgba(20,27,48,.9),rgba(13,18,32,.9));
-    border:1px solid #26304d;border-radius:18px;padding:14px;text-align:center;
+    border:1px solid #26304d;border-radius:16px;padding:12px;text-align:center;
     cursor:pointer;transition:.25s;position:relative;overflow:hidden;
   }
   .case-card:hover{transform:translateY(-4px);border-color:#7c5cff;box-shadow:0 12px 30px rgba(124,92,255,.3);}
-  .case-card .cimg{font-size:56px;line-height:1;margin-bottom:8px;display:block;}
-  .case-card h4{font-size:14px;margin-bottom:6px;color:#fff;}
-  .case-card .price{color:#8b95b8;font-size:12px;}
+  .case-card .cimg{font-size:50px;line-height:1;margin-bottom:6px;display:block;}
+  .case-card h4{font-size:13px;margin-bottom:5px;color:#fff;}
+  .case-card .price{color:#8b95b8;font-size:11px;}
   .case-card .price b{color:#22d3ee;font-weight:700;}
 
   /* ===== ЭКРАН КЕЙСА ===== */
   .back-btn{background:#1a2338;border:1px solid #26304d;color:#c8d1f0;
-    padding:8px 16px;border-radius:10px;cursor:pointer;font-weight:600;margin-bottom:16px;font-size:14px;}
+    padding:8px 16px;border-radius:10px;cursor:pointer;font-weight:600;margin-bottom:14px;font-size:13px;}
   .back-btn:hover{border-color:#7c5cff;color:#fff;}
-  .case-hero{text-align:center;padding:24px;background:linear-gradient(160deg,rgba(20,27,48,.9),rgba(13,18,32,.9));
-    border:1px solid #26304d;border-radius:20px;margin-bottom:18px;}
-  .case-hero .big{font-size:100px;line-height:1;margin-bottom:10px;}
-  .case-hero h2{font-size:22px;margin-bottom:6px;}
-  .case-hero .sub{color:#8b95b8;font-size:13px;margin-bottom:18px;}
-  .count-row{display:flex;justify-content:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
-  .cnt-chip{padding:10px 18px;border-radius:12px;background:#1a2338;border:1px solid #26304d;
-    color:#c8d1f0;font-weight:700;cursor:pointer;transition:.2s;font-size:14px;}
+  .case-hero{text-align:center;padding:20px;background:linear-gradient(160deg,rgba(20,27,48,.9),rgba(13,18,32,.9));
+    border:1px solid #26304d;border-radius:18px;margin-bottom:16px;}
+  .case-hero .big{font-size:80px;line-height:1;margin-bottom:8px;}
+  .case-hero h2{font-size:20px;margin-bottom:6px;}
+  .case-hero .sub{color:#8b95b8;font-size:12px;margin-bottom:16px;}
+  .count-row{display:flex;justify-content:center;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+  .cnt-chip{padding:9px 15px;border-radius:11px;background:#1a2338;border:1px solid #26304d;
+    color:#c8d1f0;font-weight:700;cursor:pointer;transition:.2s;font-size:13px;}
   .cnt-chip:hover{border-color:#7c5cff;color:#fff;}
   .cnt-chip.active{background:linear-gradient(90deg,#7c5cff,#22d3ee);color:#fff;border-color:transparent;
     box-shadow:0 5px 18px rgba(124,92,255,.4);}
   .open-btn{width:100%;max-width:420px;margin:0 auto;display:block;
-    padding:16px;border:none;border-radius:14px;cursor:pointer;font-size:17px;font-weight:800;color:#fff;
+    padding:15px;border:none;border-radius:13px;cursor:pointer;font-size:16px;font-weight:800;color:#fff;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#7c5cff);background-size:200% 100%;
     animation:btnFlow 6s ease infinite;transition:.2s;}
   .open-btn:hover{filter:brightness(1.15);box-shadow:0 8px 25px rgba(34,211,238,.4);}
 
   /* ===== ДРОП-ЛИСТ ===== */
-  .drop-list{margin-top:24px;}
-  .drop-list h3{font-size:16px;margin-bottom:12px;color:#8b95b8;font-weight:600;}
-  .drop-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
-  .drop-item{background:#0f1526;border:1px solid #26304d;border-radius:14px;padding:10px;
+  .drop-list{margin-top:20px;}
+  .drop-list h3{font-size:15px;margin-bottom:10px;color:#8b95b8;font-weight:600;}
+  .drop-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
+  .drop-item{background:#0f1526;border:1px solid #26304d;border-radius:12px;padding:8px;
     text-align:center;position:relative;overflow:hidden;transition:.2s;}
-  .drop-item .pct{position:absolute;top:6px;right:6px;background:#1a2338;color:#c8d1f0;
-    font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;}
-  .drop-item .gun{font-size:40px;margin:8px 0;display:block;}
-  .drop-item .name{font-size:12px;color:#fff;font-weight:600;margin-bottom:2px;}
-  .drop-item .sub{font-size:11px;color:#8b95b8;margin-bottom:6px;}
-  .drop-item .val{font-size:12px;color:#22d3ee;font-weight:700;}
+  .drop-item .pct{position:absolute;top:5px;right:5px;background:#1a2338;color:#c8d1f0;
+    font-size:10px;font-weight:700;padding:2px 7px;border-radius:7px;}
+  .drop-item .gun{font-size:34px;margin:6px 0;display:block;}
+  .drop-item .name{font-size:11px;color:#fff;font-weight:600;margin-bottom:2px;}
+  .drop-item .sub{font-size:10px;color:#8b95b8;margin-bottom:4px;}
+  .drop-item .val{font-size:11px;color:#22d3ee;font-weight:700;}
 
   .r-common{border-color:#3a4661;}
   .r-uncommon{border-color:#3b82f6;}
@@ -152,189 +157,235 @@
   .r-legend{border-color:#f59e0b;box-shadow:0 0 18px rgba(245,158,11,.3);}
 
   /* ===== ИНВЕНТАРЬ ===== */
-  .inv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
-  .inv-summary{font-size:15px;font-weight:700;}
+  .inv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+  .inv-summary{font-size:13px;font-weight:700;}
   .inv-summary span{color:#22d3ee;}
   .sell-all{background:linear-gradient(90deg,#ef4444,#b91c1c);border:none;color:#fff;
-    padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px;}
+    padding:9px 16px;border-radius:10px;font-weight:700;cursor:pointer;font-size:12px;}
   .sell-all:hover{filter:brightness(1.15);}
-  .inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
-  .inv-card{background:#0f1526;border:1px solid #26304d;border-radius:14px;padding:12px;text-align:center;
+
+  .gold-claim{
+    display:flex;align-items:center;gap:12px;
+    background:linear-gradient(135deg,#3a2b0a,#5a4310);
+    border:1px solid #f59e0b;border-radius:16px;
+    padding:14px 16px;margin-bottom:14px;cursor:pointer;
+    transition:.2s;box-shadow:0 6px 20px rgba(245,158,11,.2);
+  }
+  .gold-claim:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(245,158,11,.35);}
+  .gold-claim:active{transform:scale(.98);}
+  .gold-claim .gold-icon{font-size:36px;filter:drop-shadow(0 0 10px rgba(245,158,11,.6));}
+  .gold-claim .gold-text{flex:1;text-align:left;}
+  .gold-claim .gold-title{font-size:15px;font-weight:800;color:#fde68a;}
+  .gold-claim .gold-sub{font-size:12px;color:#d4b46a;margin-top:2px;font-weight:600;}
+
+  .inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
+  .inv-card{background:#0f1526;border:1px solid #26304d;border-radius:12px;padding:10px;text-align:center;
     cursor:pointer;transition:.2s;position:relative;overflow:hidden;}
   .inv-card:hover{transform:translateY(-3px);border-color:#7c5cff;}
   .inv-card.selected{border-color:#22d3ee;box-shadow:0 0 20px rgba(34,211,238,.5);}
-  .inv-card .gun{font-size:44px;margin:6px 0;display:block;}
-  .inv-card .name{font-size:12px;color:#fff;font-weight:600;margin-bottom:4px;}
-  .inv-card .val{font-size:13px;color:#22d3ee;font-weight:700;margin-bottom:8px;}
-  .inv-card .sell{width:100%;padding:7px;border:none;border-radius:8px;background:#26304d;
-    color:#fff;font-weight:600;cursor:pointer;font-size:12px;}
+  .inv-card .gun{font-size:38px;margin:4px 0;display:block;}
+  .inv-card .name{font-size:11px;color:#fff;font-weight:600;margin-bottom:3px;}
+  .inv-card .val{font-size:12px;color:#22d3ee;font-weight:700;margin-bottom:6px;}
+  .inv-card .sell{width:100%;padding:6px;border:none;border-radius:7px;background:#26304d;
+    color:#fff;font-weight:600;cursor:pointer;font-size:11px;}
   .inv-card .sell:hover{background:#ef4444;}
-  .empty{text-align:center;color:#5d6a8a;padding:40px 20px;font-size:14px;}
+  .empty{text-align:center;color:#5d6a8a;padding:30px 20px;font-size:13px;}
 
-  /* ===== АПГРЕЙД ===== */
-  .upg-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;margin-bottom:20px;}
+  /* ===== АПГРЕЙД — КРУТИТСЯ СТРЕЛКА ===== */
+  .upg-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;margin-bottom:20px;}
 
   .upg-wheel-box{
-    position:relative;width:280px;height:280px;max-width:90vw;max-height:90vw;
+    position:relative;width:260px;height:260px;max-width:80vw;max-height:80vw;
     display:flex;align-items:center;justify-content:center;
+    isolation:isolate;
   }
-  .upg-wheel{
+
+  /* Статичное кольцо с зонами: зелёная = WIN, красная = LOSE */
+  .upg-ring{
     position:absolute;inset:0;border-radius:50%;
     background:conic-gradient(
-      #22d3ee 0deg, #7c5cff 90deg, #a855f7 180deg, #22d3ee 270deg, #22d3ee 360deg
+      from 0deg,
+      #22c55e 0deg,
+      #16a34a var(--win-deg, 180deg),
+      #7f1d1d var(--win-deg, 180deg),
+      #450a0a 360deg
     );
-    box-shadow:0 0 50px rgba(124,92,255,.5), inset 0 0 40px rgba(0,0,0,.5);
-    animation:spinGlow 6s linear infinite;
+    box-shadow:0 0 40px rgba(34,197,94,.25), inset 0 0 30px rgba(0,0,0,.6);
+    z-index:1;
   }
-  @keyframes spinGlow{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
 
-  .upg-wheel .ring{
-    position:absolute;inset:22px;border-radius:50%;background:#0a0e1a;
+  /* Маска — превращает полный диск в тонкое кольцо */
+  .upg-ring-mask{
+    position:absolute;inset:26px;border-radius:50%;
+    background:radial-gradient(circle,#0a0e1a,#0f1526);
     border:2px solid #26304d;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    color:#22d3ee;z-index:1;
+    z-index:2;
+    box-shadow:inset 0 0 30px rgba(0,0,0,.7);
   }
-  .upg-wheel .ring .pct{font-size:44px;font-weight:900;line-height:1;
+
+  /* Центральный блок с процентом */
+  .upg-center{
+    position:relative;z-index:3;
+    width:170px;height:170px;border-radius:50%;
+    background:radial-gradient(circle,#0f1526,#0a0e1a);
+    border:1px solid #1e2742;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:inset 0 0 40px rgba(124,92,255,.25);
+    pointer-events:none;
+  }
+  .upg-center .pct{
+    font-size:42px;font-weight:900;line-height:1;
     background:linear-gradient(90deg,#22d3ee,#7c5cff,#22d3ee);
     background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:textFlow 4s ease infinite;}
-  .upg-wheel .ring .lbl{font-size:12px;color:#8b95b8;margin-top:6px;font-weight:600;}
-
-  /* Стрелка */
-  .upg-arrow{
-    position:absolute;top:0;left:50%;width:100%;height:100%;
-    transform-origin:50% 50%;pointer-events:none;z-index:5;
-    transition:transform 4s cubic-bezier(.2,.8,.15,1);
+    animation:textFlow 4s ease infinite;
   }
-  .upg-arrow::before{
-    content:'';position:absolute;top:-6px;left:50%;
+  .upg-center .lbl{font-size:11px;color:#8b95b8;margin-top:4px;font-weight:600;letter-spacing:.3px;}
+
+  /* Крутящаяся стрелка (палка) */
+  .upg-needle{
+    position:absolute;
+    top:0;left:50%;
+    width:8px;height:50%;
+    margin-left:-4px;
+    transform-origin:50% 100%;
+    transform:rotate(0deg);
+    pointer-events:none;
+    z-index:5;
+    will-change:transform;
+  }
+  /* Остриё (треугольник), смотрит наружу */
+  .upg-needle::before{
+    content:'';
+    position:absolute;
+    top:0;left:50%;
     transform:translateX(-50%);
     width:0;height:0;
-    border-left:14px solid transparent;
-    border-right:14px solid transparent;
-    border-bottom:26px solid #f59e0b;
-    filter:drop-shadow(0 0 10px #f59e0b);
+    border-left:12px solid transparent;
+    border-right:12px solid transparent;
+    border-bottom:18px solid #fbbf24;
+    filter:drop-shadow(0 0 10px rgba(251,191,36,.95));
   }
-  .upg-arrow::after{
-    content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);
-    width:8px;height:8px;border-radius:50%;background:#f59e0b;
-    box-shadow:0 0 10px #f59e0b;
-  }
-  /* Маска: показываем только верхнюю часть стрелки (индикатор) */
-  .upg-arrow-mask{
-    position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;z-index:4;
-  }
-
-  /* Зоны-сегменты на колесе */
-  .upg-zone{
-    position:absolute;top:0;left:50%;width:4px;height:50%;
-    transform-origin:50% 100%;pointer-events:none;z-index:3;
-  }
-  .upg-zone::before{
-    content:'';display:block;width:100%;height:100%;
-    background:linear-gradient(to top,transparent,#f59e0b);
-    opacity:.5;
+  /* Тело стрелки */
+  .upg-needle::after{
+    content:'';
+    position:absolute;
+    top:16px;bottom:2px;left:50%;
+    transform:translateX(-50%);
+    width:4px;
+    background:linear-gradient(to bottom,#fbbf24 0%,#f59e0b 35%,rgba(245,158,11,.35) 85%,transparent 100%);
+    border-radius:2px;
+    box-shadow:0 0 8px rgba(251,191,36,.55);
   }
 
-  .upg-row{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;
-    max-width:560px;width:100%;}
+  /* Индикатор оси в центре */
+  .upg-hub{
+    position:absolute;top:50%;left:50%;
+    width:16px;height:16px;margin:-8px 0 0 -8px;
+    border-radius:50%;
+    background:radial-gradient(circle,#fbbf24,#b45309);
+    box-shadow:0 0 12px rgba(251,191,36,.8);
+    z-index:6;
+    pointer-events:none;
+  }
+
+  .upg-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;
+    max-width:520px;width:100%;}
   .upg-slot{
-    background:#0f1526;border:2px dashed #26304d;border-radius:16px;padding:16px;text-align:center;
-    min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:#0f1526;border:2px dashed #26304d;border-radius:14px;padding:14px;text-align:center;
+    min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;
     transition:.3s;
   }
   .upg-slot.filled{border-style:solid;border-color:#22d3ee;background:#0a1a24;}
-  .upg-slot .gun{font-size:46px;}
-  .upg-slot .nm{font-size:12px;color:#fff;font-weight:600;margin-top:6px;}
-  .upg-slot .vl{font-size:13px;color:#22d3ee;font-weight:700;margin-top:2px;}
-  .upg-slot .empty-txt{color:#5d6a8a;font-size:12px;}
-  .upg-arrow-icon{font-size:24px;color:#7c5cff;}
+  .upg-slot .gun{font-size:42px;}
+  .upg-slot .nm{font-size:11px;color:#fff;font-weight:600;margin-top:6px;}
+  .upg-slot .vl{font-size:12px;color:#22d3ee;font-weight:700;margin-top:2px;}
+  .upg-slot .empty-txt{color:#5d6a8a;font-size:11px;}
+  .upg-arrow-icon{font-size:22px;color:#7c5cff;}
 
-  .mult-row{display:flex;justify-content:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;max-width:560px;}
-  .mult-btn{padding:12px 18px;border-radius:12px;background:#1a2338;border:1px solid #26304d;
-    color:#c8d1f0;font-weight:700;cursor:pointer;font-size:14px;transition:.2s;}
-  .mult-btn small{display:block;font-size:11px;color:#8b95b8;font-weight:500;margin-top:2px;}
+  .mult-row{display:flex;justify-content:center;gap:6px;margin-bottom:14px;flex-wrap:wrap;max-width:520px;}
+  .mult-btn{padding:10px 15px;border-radius:11px;background:#1a2338;border:1px solid #26304d;
+    color:#c8d1f0;font-weight:700;cursor:pointer;font-size:13px;transition:.2s;text-align:center;}
+  .mult-btn small{display:block;font-size:10px;color:#8b95b8;font-weight:500;margin-top:2px;}
   .mult-btn:hover{border-color:#7c5cff;color:#fff;}
   .mult-btn.active{background:linear-gradient(90deg,#22d3ee,#7c5cff);color:#fff;border-color:transparent;
     box-shadow:0 5px 18px rgba(124,92,255,.5);}
   .mult-btn.active small{color:#e0e8ff;}
 
-  .upg-go{width:100%;max-width:560px;padding:16px;border:none;border-radius:14px;font-size:17px;
+  .upg-go{width:100%;max-width:520px;padding:15px;border:none;border-radius:13px;font-size:16px;
     font-weight:800;color:#fff;cursor:pointer;
     background:linear-gradient(90deg,#22d3ee,#7c5cff,#22d3ee);background-size:200% 100%;
     animation:btnFlow 6s ease infinite;}
   .upg-go:hover{filter:brightness(1.15);}
   .upg-go:disabled{opacity:.4;cursor:not-allowed;animation:none;}
 
-  /* Выбор предмета в апгрейде */
-  .upg-picker{margin-top:20px;}
-  .upg-picker h3{font-size:15px;margin-bottom:10px;color:#8b95b8;}
-  .upg-picker .pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;}
-  .pick-card{background:#0f1526;border:1px solid #26304d;border-radius:12px;padding:10px;
+  .upg-picker{margin-top:18px;width:100%;}
+  .upg-picker h3{font-size:14px;margin-bottom:10px;color:#8b95b8;}
+  .upg-picker .pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;}
+  .pick-card{background:#0f1526;border:1px solid #26304d;border-radius:11px;padding:8px;
     text-align:center;cursor:pointer;transition:.2s;position:relative;}
   .pick-card:hover{border-color:#7c5cff;transform:translateY(-2px);}
   .pick-card.selected{border-color:#22d3ee;box-shadow:0 0 15px rgba(34,211,238,.4);}
-  .pick-card .gun{font-size:32px;display:block;margin-bottom:4px;}
-  .pick-card .nm{font-size:11px;color:#fff;font-weight:600;margin-bottom:2px;}
-  .pick-card .vl{font-size:12px;color:#22d3ee;font-weight:700;}
+  .pick-card .gun{font-size:28px;display:block;margin-bottom:3px;}
+  .pick-card .nm{font-size:10px;color:#fff;font-weight:600;margin-bottom:2px;}
+  .pick-card .vl{font-size:11px;color:#22d3ee;font-weight:700;}
 
   /* ===== МОДАЛКА ===== */
-  .modal{position:fixed;inset:0;background:rgba(3,6,14,.88);display:none;
-    align-items:center;justify-content:center;padding:16px;z-index:200;backdrop-filter:blur(6px);}
+  .modal{position:fixed;inset:0;background:rgba(3,6,14,.9);display:none;
+    align-items:center;justify-content:center;padding:14px;z-index:200;backdrop-filter:blur(6px);}
   .modal.show{display:flex;}
   .modal-box{background:linear-gradient(160deg,#0f1526,#141b30);border:1px solid #26304d;
-    border-radius:20px;padding:24px;max-width:620px;width:100%;text-align:center;max-height:90vh;overflow-y:auto;}
-  .modal-box h2{margin-bottom:16px;font-size:18px;}
-  .multi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-bottom:16px;}
-  .multi-item{background:#0a0e1a;border:2px solid #26304d;border-radius:12px;padding:10px 4px;
-    display:flex;flex-direction:column;align-items:center;gap:4px;animation:pop .35s ease backwards;}
+    border-radius:20px;padding:20px;max-width:620px;width:100%;text-align:center;max-height:90vh;overflow-y:auto;}
+  .modal-box h2{margin-bottom:12px;font-size:17px;}
+
+  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+  .stat-block{background:#0a0e1a;border:1px solid #26304d;border-radius:12px;padding:10px;}
+  .stat-lbl{font-size:10px;color:#5d6a8a;font-weight:700;letter-spacing:1px;margin-bottom:4px;}
+  .stat-val{font-size:16px;font-weight:800;}
+  .stat-val.spent{color:#ef4444;}
+  .stat-val.recv{color:#22d3ee;}
+
+  .multi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-bottom:14px;}
+  .multi-item{background:#0a0e1a;border:2px solid #26304d;border-radius:10px;padding:8px 4px;
+    display:flex;flex-direction:column;align-items:center;gap:3px;animation:pop .35s ease backwards;}
   @keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
-  .multi-item .em{font-size:28px;}
-  .multi-item .v{font-size:11px;font-weight:700;}
-  .multi-item.win{border-color:#22d3ee;}
-  .multi-item.win .v{color:#22d3ee;}
-  .multi-item.lose{border-color:#7a2a2a;}
-  .multi-item.lose .v{color:#ef4444;}
-  .total-line{font-size:18px;font-weight:800;margin-bottom:14px;
-    background:linear-gradient(90deg,#22d3ee,#7c5cff);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .close-btn{padding:12px 30px;border:none;border-radius:12px;background:#26304d;color:#fff;
-    font-weight:700;cursor:pointer;font-size:14px;}
-  .close-btn:hover{background:#313d61;}
+  .multi-item .em{font-size:26px;}
+  .multi-item .v{font-size:10px;font-weight:700;}
+
+  .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .modal-btn{padding:13px 10px;border:none;border-radius:12px;font-weight:800;font-size:13px;
+    cursor:pointer;transition:.2s;color:#fff;}
+  .modal-btn.sell{background:linear-gradient(90deg,#22d3ee,#0ea5e9);}
+  .modal-btn.keep{background:#26304d;}
+  .modal-btn:hover{filter:brightness(1.15);}
 
   /* ===== НИЖНЕЕ МЕНЮ ===== */
   .nav{
     position:fixed;bottom:0;left:0;right:0;z-index:100;
     display:flex;justify-content:space-around;align-items:center;
-    background:rgba(10,14,26,.95);backdrop-filter:blur(14px);
-    border-top:1px solid #1e2742;padding:8px 0 12px;
+    background:rgba(10,14,26,.97);backdrop-filter:blur(14px);
+    border-top:1px solid #1e2742;padding:6px 0 max(8px, env(safe-area-inset-bottom));
+    width:100%;
   }
-  .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
-    color:#5d6a8a;cursor:pointer;font-size:11px;font-weight:600;
-    padding:6px 0;transition:.2s;background:none;border:none;}
-  .nav-btn .ic{font-size:20px;}
+  .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+    color:#5d6a8a;cursor:pointer;font-size:10px;font-weight:600;
+    padding:5px 0;transition:.2s;background:none;border:none;}
+  .nav-btn .ic{font-size:19px;}
   .nav-btn.active{color:#22d3ee;}
   .nav-btn.active .ic{filter:drop-shadow(0 0 8px rgba(34,211,238,.8));}
 
-  /* Тост */
-  .toast{position:fixed;top:70px;left:50%;transform:translate(-50%,-120px);
-    display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:14px;
-    font-weight:700;font-size:14px;z-index:999;background:linear-gradient(135deg,#1e2742,#141b30);
+  .toast{position:fixed;top:60px;left:50%;transform:translate(-50%,-120px);
+    display:flex;align-items:center;gap:8px;padding:12px 16px;border-radius:13px;
+    font-weight:700;font-size:13px;z-index:999;background:linear-gradient(135deg,#1e2742,#141b30);
     border:1px solid #ef4444;color:#fff;box-shadow:0 15px 40px rgba(239,68,68,.35);
     opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.2,1.2,.4,1),opacity .3s;
-    max-width:calc(100% - 32px);}
+    max-width:calc(100% - 24px);}
   .toast.show{transform:translate(-50%,0);opacity:1;}
-  .toast .ic{width:34px;height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,#ef4444,#b91c1c);border-radius:10px;font-size:18px;}
+  .toast .ic{width:30px;height:30px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#ef4444,#b91c1c);border-radius:9px;font-size:16px;}
   .toast.success{border-color:#22d3ee;box-shadow:0 15px 40px rgba(34,211,238,.35);}
   .toast.success .ic{background:linear-gradient(135deg,#22d3ee,#0ea5e9);}
   .toast.info{border-color:#f59e0b;}
   .toast.info .ic{background:linear-gradient(135deg,#f59e0b,#ef4444);}
-
-  @media(max-width:600px){
-    .screen{padding:14px;}
-    .case-hero .big{font-size:80px;}
-    .upg-wheel .ring .pct{font-size:34px;}
-  }
 </style>
 </head>
 <body>
@@ -359,12 +410,12 @@
 </div>
 
 <header>
-  <div class="logo">💀 Reward Centre</div>
+  <div class="logo">💀<span class="logo-txt"> Reward Centre</span></div>
   <div class="user-badge" id="userBadge" title="Сменить аккаунт">
     <div class="avatar" id="userAvatar">?</div>
     <div class="uname" id="userName">—</div>
   </div>
-  <div class="balance">Баланс: <span id="balance">1000</span></div>
+  <div class="balance"><span id="balance">1000</span></div>
 </header>
 
 <!-- ===== ЛОББИ ===== -->
@@ -392,13 +443,21 @@
   <div class="drop-list">
     <h3 id="dropTitle">Содержимое кейса</h3>
     <div class="drop-items" id="dropItems"></div>
-  div>
   </div>
 </div>
 
 <!-- ===== ИНВЕНТАРЬ ===== -->
 <div class="screen" id="screen-inv">
   <div class="screen-title">🎒 Инвентарь</div>
+
+  <div class="gold-claim" id="goldClaim">
+    <div class="gold-icon">💰</div>
+    <div class="gold-text">
+      <div class="gold-title">Поднять голду</div>
+      <div class="gold-sub" id="goldSub">1 ₽ в час · макс 1000 ₽</div>
+    </div>
+  </div>
+
   <div class="inv-header">
     <div class="inv-summary">Предметов: <span id="invCount">0</span> · Стоимость: <span id="invTotal">0</span> ₽</div>
     <button class="sell-all" id="sellAll">ПРОДАТЬ ВСЁ</button>
@@ -414,12 +473,14 @@
   <div class="upg-wrap">
 
     <div class="upg-wheel-box">
-      <div class="upg-wheel"></div>
-      <div class="upg-wheel ring">
+      <div class="upg-ring" id="upgRing"></div>
+      <div class="upg-ring-mask"></div>
+      <div class="upg-center">
         <div class="pct" id="upgChance">50%</div>
         <div class="lbl">шанс апгрейда</div>
       </div>
-      <div class="upg-arrow" id="upgArrow"></div>
+      <div class="upg-needle" id="upgNeedle"></div>
+      <div class="upg-hub"></div>
     </div>
 
     <div class="upg-row">
@@ -444,7 +505,7 @@
     <div class="upg-picker">
       <h3>🎒 Твой инвентарь — выбери скин</h3>
       <div class="pick-grid" id="pickGrid"></div>
-      <div class="empty" id="pickEmpty" style="padding:20px;">Инвентарь пуст</div>
+      <div class="empty" id="pickEmpty" style="padding:16px;">Инвентарь пуст</div>
     </div>
   </div>
 </div>
@@ -453,9 +514,24 @@
 <div class="modal" id="modal">
   <div class="modal-box">
     <h2 id="modalTitle">Результат</h2>
+
+    <div class="stat-row">
+      <div class="stat-block">
+        <div class="stat-lbl">ПОТРАЧЕНО</div>
+        <div class="stat-val spent" id="spentVal">0 ₽</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-lbl">ПОЛУЧЕНО</div>
+        <div class="stat-val recv" id="recvVal">0 ₽</div>
+      </div>
+    </div>
+
     <div class="multi-grid" id="multiGrid"></div>
-    <div class="total-line" id="totalLine"></div>
-    <button class="close-btn" id="closeBtn">Забрать</button>
+
+    <div class="modal-btns">
+      <button class="modal-btn sell" id="sellNewBtn">ПРОДАТЬ ЗА 0 ₽</button>
+      <button class="modal-btn keep" id="keepBtn">В ИНВЕНТАРЬ</button>
+    </div>
   </div>
 </div>
 
@@ -483,7 +559,6 @@ const RARITY = {
 const GUN_ICONS = ["🔫","💥","🎯","⚔️","🗡️","🪓","🛡️","🏹"];
 
 const CASES = [
-  {name:"Бесплатный",     emoji:"📦", price:0,     min:5,    max:50},
   {name:"Стартовый ящик", emoji:"🧰", price:99,    min:10,   max:120},
   {name:"Летний набор",   emoji:"🌴", price:199,   min:20,   max:250},
   {name:"Видения и тени", emoji:"🌑", price:299,   min:30,   max:400},
@@ -515,22 +590,19 @@ const CASES = [
   {name:"Reward Centre",  emoji:"👑", price:50000, min:18000,max:135000}
 ];
 
-/* Скины с выгодой для игрока */
 const SKIN_NAMES = ["Lifted","Sakkaku","Resupply","Ensnared","Run and Hide","Fade","Modern Hunter",
                     "Neon Rider","Blood Sport","Golden Coil","Frostbite","Hyper Beast","Dragon Lore"];
 function buildSkins(c){
   const chances   = [0.1, 0.5, 1.5, 5,  12,  30,  50.9];
   const rarityKey = ["legend","epic","epic","rare","rare","uncommon","common"];
-  const mults     = [30, 15, 8, 4, 2.5, 1.8, 1.2];
-
+  const mults     = [2.5, 2.0, 1.65, 1.4, 1.2, 1.0, 0.85];
+  const base = c.price > 0 ? c.price : Math.max(c.min, c.max / 2.5);
   const skins = [];
   for (let i = 0; i < 7; i++){
-    const base = Math.max(c.price, c.min);
-    const jitter = 0.85 + Math.random() * 0.3;
+    const jitter = 0.95 + Math.random() * 0.1;
     let price = Math.floor(base * mults[i] * jitter);
     if (price < c.min) price = c.min;
     if (price > c.max) price = c.max;
-
     skins.push({
       name: SKIN_NAMES[(i + c.name.length) % SKIN_NAMES.length] + " " + c.name,
       gun: GUN_ICONS[(i + c.name.length) % GUN_ICONS.length],
@@ -560,10 +632,11 @@ let currentCase = null;
 let currentCount = 1;
 let upgSelected = null;
 let upgMult = 2;
+let pendingNewIds = [];
+let upgRotation = 0;   // накопленный угол стрелки
 
 const $ = id => document.getElementById(id);
 
-/* Ключ в localStorage — уникален для каждого пользователя */
 function userKey(suffix){ return `rc_${currentUser}_${suffix}`; }
 
 function save(){
@@ -573,18 +646,25 @@ function save(){
 }
 function load(){
   if (!currentUser) return;
-  const b = Number(localStorage.getItem(userKey("balance")));
-  balance = (!b || isNaN(b)) ? START_BALANCE : b;
+  const rawB = localStorage.getItem(userKey("balance"));
+  const b = Number(rawB);
+  balance = (rawB === null || rawB === "" || isNaN(b)) ? START_BALANCE : b;
   try { inventory = JSON.parse(localStorage.getItem(userKey("inv"))) || []; } catch(e){ inventory = []; }
+  if (!Array.isArray(inventory)) inventory = [];
 }
 
-/* Все существующие пользователи */
 function getAllUsers(){
-  try { return JSON.parse(localStorage.getItem("rc_users")) || []; } catch(e){ return []; }
+  try {
+    const raw = localStorage.getItem("rc_users");
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return [];
+    return arr.filter(u => typeof u === "string" && u.length > 0);
+  } catch(e){ return []; }
 }
 function saveUsers(arr){ localStorage.setItem("rc_users", JSON.stringify(arr)); }
 
-function fmt(n){ return n.toLocaleString("ru-RU"); }
+function fmt(n){ return Number(n).toLocaleString("ru-RU"); }
 
 function showToast(text, type="error"){
   let t = document.querySelector(".toast");
@@ -597,8 +677,7 @@ function showToast(text, type="error"){
   clearTimeout(t._t);
   t._t = setTimeout(()=>t.classList.remove("show"), 2400);
 }
-
-/* ============================================================
+ /* ============================================================
    РЕГИСТРАЦИЯ / ВХОД
 ============================================================ */
 const authScreen = $("authScreen");
@@ -623,63 +702,60 @@ loginModeLink.addEventListener("click", ()=>{
 });
 
 authBtn.addEventListener("click", ()=>{
-  const nick = nickInput.value.trim();
   authErr.textContent = "";
+  try {
+    const nick = nickInput.value.trim();
+    if (!nick){ authErr.textContent = "Введи ник!"; return; }
+    if (nick.length < 3 || nick.length > 16){ authErr.textContent = "Ник должен быть от 3 до 16 символов"; return; }
+    if (!/^[a-zA-Z0-9_а-яА-ЯёЁ]+$/.test(nick)){ authErr.textContent = "Только буквы, цифры и _"; return; }
 
-  if (!nick){
-    authErr.textContent = "Введи ник!";
-    return;
-  }
-  if (nick.length < 3 || nick.length > 16){
-    authErr.textContent = "Ник должен быть от 3 до 16 символов";
-    return;
-  }
-  if (!/^[a-zA-Z0-9_а-яА-ЯёЁ]+$/.test(nick)){
-    authErr.textContent = "Только буквы, цифры и _";
-    return;
-  }
+    const users = getAllUsers();
+    const lower = nick.toLowerCase();
+    const exists = users.find(u => u.toLowerCase() === lower);
 
-  const users = getAllUsers();
-  const lower = nick.toLowerCase();
-  const exists = users.find(u => u.toLowerCase() === lower);
-
-  if (isLoginMode){
-    if (!exists){
-      authErr.textContent = "Такого аккаунта нет! Создай новый.";
-      return;
+    if (isLoginMode){
+      if (!exists){ authErr.textContent = "Такого аккаунта нет! Создай новый."; return; }
+      loginUser(exists);
+    } else {
+      if (exists){ authErr.textContent = "Такой ник уже занят! Придумай другой."; return; }
+      users.push(nick);
+      saveUsers(users);
+      loginUser(nick);
     }
-    loginUser(exists);
-  } else {
-    if (exists){
-      authErr.textContent = "Такой ник уже занят! Придумай другой.";
-      return;
-    }
-    users.push(nick);
-    saveUsers(users);
-    loginUser(nick);
+  } catch(err){
+    console.error("[RC] authBtn error:", err);
+    authErr.textContent = "Ошибка: " + (err.message || err);
   }
 });
 
 nickInput.addEventListener("keydown", e=>{ if(e.key==="Enter") authBtn.click(); });
 
 function loginUser(nick){
-  currentUser = nick;
-  localStorage.setItem("rc_current_user", nick);
-  load();
-  authScreen.classList.add("hide");
-  $("navBar").style.display = "flex";
-  // Обновляем аватар
-  $("userAvatar").textContent = nick[0].toUpperCase();
-  $("userName").textContent = nick;
-  renderBalance();
-  renderCases();
-  renderInventory();
-  renderUpgrade();
-  showScreen("cases");
-  showToast(`Привет, ${nick}! 🎉`, "success");
+  try {
+    currentUser = nick;
+    localStorage.setItem("rc_current_user", nick);
+    load();
+    upgRotation = 0;
+    authScreen.classList.add("hide");
+    $("navBar").style.display = "flex";
+    $("userAvatar").textContent = nick[0].toUpperCase();
+    $("userName").textContent = nick;
+    renderBalance();
+    renderCases();
+    renderInventory();
+    renderUpgrade();
+    showScreen("cases");
+    showToast(`Привет, ${nick}! 🎉`, "success");
+  } catch(err){
+    console.error("[RC] loginUser error:", err);
+    currentUser = null;
+    localStorage.removeItem("rc_current_user");
+    authScreen.classList.remove("hide");
+    $("navBar").style.display = "none";
+    authErr.textContent = "Не удалось войти: " + (err.message || err);
+  }
 }
 
-/* Смена аккаунта */
 $("userBadge").addEventListener("click", ()=>{
   if (confirm("Выйти из аккаунта? Прогресс сохранится.")){
     save();
@@ -687,6 +763,18 @@ $("userBadge").addEventListener("click", ()=>{
     currentUser = null;
     balance = START_BALANCE;
     inventory = [];
+    upgSelected = null;
+    upgMult = 2;
+    currentCase = null;
+    currentCount = 1;
+    pendingNewIds = [];
+    upgRotation = 0;
+
+    isLoginMode = false;
+    authBtn.textContent = "СОЗДАТЬ АККАУНТ";
+    loginModeLink.textContent = "Войти в аккаунт";
+    document.querySelector(".auth-box .subtitle").textContent = "Создай аккаунт и начни подниматься";
+
     authScreen.classList.remove("hide");
     $("navBar").style.display = "none";
     document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
@@ -696,16 +784,12 @@ $("userBadge").addEventListener("click", ()=>{
   }
 });
 
-/* Авто-вход если уже играл */
 (function autoLogin(){
   const saved = localStorage.getItem("rc_current_user");
   if (saved){
     const users = getAllUsers();
     const match = users.find(u => u.toLowerCase() === saved.toLowerCase());
-    if (match){
-      loginUser(match);
-      return;
-    }
+    if (match){ loginUser(match); return; }
   }
   nickInput.focus();
 })();
@@ -718,7 +802,7 @@ function showScreen(name){
   $("screen-"+name).classList.add("active");
   document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active", b.dataset.screen===name));
   window.scrollTo({top:0, behavior:"smooth"});
-  if(name==="inv") renderInventory();
+  if(name==="inv"){ renderInventory(); renderGoldButton(); }
   if(name==="upg") renderUpgrade();
   if(name==="cases") renderCases();
 }
@@ -728,7 +812,8 @@ document.querySelectorAll(".nav-btn").forEach(btn=>{
 });
 
 function renderBalance(){ $("balance").textContent = fmt(balance); }
- /* ============================================================
+
+/* ============================================================
    КЕЙСЫ
 ============================================================ */
 function renderCases(){
@@ -804,46 +889,70 @@ $("openBtn").addEventListener("click", ()=>{
   save(); renderBalance();
 
   const results = [];
+  const sorted = [...c.skins].sort((a,b)=>b.chance-a.chance);
   for (let i=0;i<currentCount;i++){
     const rnd = Math.random() * 100;
-    let acc = 0, chosen = c.skins[c.skins.length-1];
-    for (const s of [...c.skins].sort((a,b)=>b.chance-a.chance)){
+    let acc = 0, chosen = sorted[sorted.length-1];
+    for (const s of sorted){
       acc += s.chance;
       if (rnd <= acc){ chosen = s; break; }
     }
     results.push(chosen);
   }
 
+  pendingNewIds = [];
   results.forEach(s=>{
+    const id = Date.now() + Math.random();
+    pendingNewIds.push(id);
     inventory.push({
-      id: Date.now() + Math.random(),
-      name: s.name, gun: s.gun, rarity: s.rarity, price: s.price
+      id, name: s.name, gun: s.gun, rarity: s.rarity, price: s.price
     });
   });
   save();
-  showResults(results, c);
+  showResults(results, total);
 });
 
-function showResults(results, c){
+function showResults(results, spent){
   $("modalTitle").textContent = `Открыто: ${results.length} шт.`;
+
+  let total = 0;
   const g = $("multiGrid");
   g.innerHTML = "";
-  let total = 0;
   results.forEach((s, i)=>{
     total += s.price;
     const r = RARITY[s.rarity];
     const el = document.createElement("div");
     el.className = "multi-item " + r.class;
-    el.style.animationDelay = (i*0.05)+"s";
+    el.style.animationDelay = (i*0.04)+"s";
     el.innerHTML = `<div class="em">${s.gun}</div><div class="v">${fmt(s.price)} ₽</div>`;
     g.appendChild(el);
   });
-  $("totalLine").textContent = `Итого: +${fmt(total)} ₽`;
+
+  $("spentVal").textContent = fmt(spent) + " ₽";
+  $("recvVal").textContent = fmt(total) + " ₽";
+  $("sellNewBtn").textContent = `ПРОДАТЬ ЗА ${fmt(total)} ₽`;
   $("modal").classList.add("show");
-  showToast(`Получено ${results.length} предметов!`, "success");
 }
 
-$("closeBtn").addEventListener("click", ()=> $("modal").classList.remove("show"));
+$("sellNewBtn").addEventListener("click", ()=>{
+  let sum = 0;
+  pendingNewIds.forEach(id=>{
+    const idx = inventory.findIndex(it => it.id === id);
+    if (idx >= 0){ sum += inventory[idx].price; inventory.splice(idx, 1); }
+  });
+  balance += sum;
+  pendingNewIds = [];
+  if (upgSelected !== null && !inventory[upgSelected]) upgSelected = null;
+  save(); renderBalance(); renderInventory();
+  $("modal").classList.remove("show");
+  showToast(`Продано: +${fmt(sum)} ₽`, "success");
+});
+
+$("keepBtn").addEventListener("click", ()=>{
+  pendingNewIds = [];
+  $("modal").classList.remove("show");
+  renderInventory();
+});
 
 /* ============================================================
    ИНВЕНТАРЬ
@@ -872,6 +981,10 @@ function renderInventory(){
       <button class="sell" data-id="${i}">ПРОДАТЬ</button>
     `;
     el.querySelector(".sell").addEventListener("click", (e)=>{ e.stopPropagation(); sellItem(i); });
+    el.addEventListener("click", ()=>{
+      upgSelected = i;
+      showScreen("upg");
+    });
     g.appendChild(el);
   });
   $("invCount").textContent = inventory.length;
@@ -900,47 +1013,115 @@ $("sellAll").addEventListener("click", ()=>{
 });
 
 /* ============================================================
-   АПГРЕЙД
+   ПОДНЯТЬ ГОЛДУ
+============================================================ */
+const GOLD_PER_HOUR = 1;
+const GOLD_MAX = 1000;
+
+function renderGoldButton(){
+  if (!currentUser) return;
+  const now = Date.now();
+  const raw = localStorage.getItem(userKey("goldLast"));
+  if (!raw){
+    $("goldSub").textContent = "Нажми, чтобы получить 1 ₽";
+    return;
+  }
+  const last = Number(raw);
+  const elapsedMs = now - last;
+  const hours = Math.floor(elapsedMs / 3600000);
+  if (hours < 1){
+    const minsLeft = 60 - Math.floor(elapsedMs / 60000);
+    $("goldSub").textContent = `Следующая через ${minsLeft} мин.`;
+  } else {
+    const reward = Math.min(hours * GOLD_PER_HOUR, GOLD_MAX);
+    $("goldSub").textContent = `Забрать ${fmt(reward)} ₽`;
+  }
+}
+
+function claimGold(){
+  if (!currentUser) return;
+  const now = Date.now();
+  const raw = localStorage.getItem(userKey("goldLast"));
+  if (!raw){
+    balance += 1;
+    localStorage.setItem(userKey("goldLast"), now);
+    save(); renderBalance(); renderGoldButton();
+    showToast("+1 ₽", "success");
+    return;
+  }
+  const last = Number(raw);
+  const elapsedMs = now - last;
+  const hours = Math.floor(elapsedMs / 3600000);
+  if (hours < 1){
+    const minsLeft = 60 - Math.floor(elapsedMs / 60000);
+    showToast(`Ещё рано! Через ${minsLeft} мин.`, "info");
+    return;
+  }
+  const reward = Math.min(hours * GOLD_PER_HOUR, GOLD_MAX);
+  balance += reward;
+  localStorage.setItem(userKey("goldLast"), now);
+  save(); renderBalance(); renderGoldButton();
+  showToast(`+${fmt(reward)} ₽`, "success");
+}
+
+$("goldClaim").addEventListener("click", claimGold);
+
+/* ============================================================
+   АПГРЕЙД — крутится СТРЕЛКА, кольцо с зонами статично
 ============================================================ */
 function updateUpgradeUI(){
   const pct = Math.round(UPGRADES[upgMult].chance * 100);
   $("upgChance").textContent = pct + "%";
+  // Зелёная зона = win chance. Conic-gradient идёт по часовой от 12ч.
+  const deg = UPGRADES[upgMult].chance * 360;
+  const ring = $("upgRing");
+  if (ring) ring.style.setProperty("--win-deg", deg + "deg");
 }
 
-/* Крутим стрелку и останавливаем в зоне победы/луза */
-function spinArrow(win){
-  const arrow = $("upgArrow");
-  const pct = UPGRADES[upgMult].chance;
+function spinNeedle(win){
+  const needle = $("upgNeedle");
+  if (!needle) return;
 
-  // Стрелка показывает наверх (0°). Круг разделён:
-  // - зона WIN: верхние pct*360 градусов (например 75% = 270°)
-  // - зона LOSE: остальное
-  let targetDeg;
+  const pct = UPGRADES[upgMult].chance;
+  const winDeg = pct * 360;
+
+  // Куда должен попасть кончик стрелки (0° = вверх, по часовой)
+  let localAngle;
   if (win){
-    // Попадаем в зону WIN (0..pct*360)
-    const zoneSize = pct * 360;
-    targetDeg = Math.random() * zoneSize * 0.85 + zoneSize * 0.075;
-    // крутим несколько оборотов + угол
-    targetDeg = 360 * 6 + targetDeg;
+    // В зелёную зону [0, winDeg)
+    localAngle = winDeg * 0.05 + Math.random() * winDeg * 0.9;
   } else {
-    // Попадаем в зону LOSE
-    const zoneStart = pct * 360;
-    const zoneSize = 360 - zoneStart;
-    targetDeg = zoneStart + Math.random() * zoneSize * 0.85 + zoneSize * 0.075;
-    targetDeg = 360 * 6 + targetDeg;
+    // В красную зону [winDeg, 360)
+    const loseStart = winDeg;
+    const loseSize = 360 - winDeg;
+    localAngle = loseStart + loseSize * 0.05 + Math.random() * loseSize * 0.9;
   }
 
-  // Сбрасываем и запускаем вращение
-  arrow.style.transition = "none";
-  arrow.style.transform = "rotate(0deg)";
-  void arrow.offsetWidth;
-  arrow.style.transition = "transform 4s cubic-bezier(.15,.85,.15,1)";
-  arrow.style.transform = `rotate(${targetDeg}deg)`;
+  // Текущий локальный угол стрелки (0..360)
+  const currentLocal = ((upgRotation % 360) + 360) % 360;
+
+  // На сколько градусов нужно довернуть, чтобы попасть в localAngle
+  let delta = localAngle - currentLocal;
+  if (delta < 0) delta += 360;
+
+  // 6 полных оборотов + доворот
+  const totalRot = 360 * 6 + delta;
+  const fromRot = upgRotation;
+  upgRotation += totalRot;
+
+  // Сброс и запуск анимации от текущего положения
+  needle.style.transition = "none";
+  needle.style.transform = `rotate(${fromRot}deg)`;
+  void needle.offsetWidth;
+  needle.style.transition = "transform 4.5s cubic-bezier(.15,.85,.15,1)";
+  needle.style.transform = `rotate(${upgRotation}deg)`;
 }
 
 function renderUpgrade(){
   updateUpgradeUI();
-  // слот слева
+
+  if (upgSelected !== null && !inventory[upgSelected]) upgSelected = null;
+
   const slot = $("slotLeft");
   if (upgSelected !== null && inventory[upgSelected]){
     const it = inventory[upgSelected];
@@ -964,12 +1145,12 @@ function renderUpgrade(){
 
   $("upgGo").disabled = !(upgSelected !== null && inventory[upgSelected]);
   if (upgSelected !== null && inventory[upgSelected]){
-    $("upgGo").textContent = `АПГРЕЙДНУТЬ · шанс ${UPGRADES[upgMult].chance*100}%`;
+    const pct = Math.round(UPGRADES[upgMult].chance * 100);
+    $("upgGo").textContent = `АПГРЕЙДНУТЬ · шанс ${pct}%`;
   } else {
     $("upgGo").textContent = "Выберите скин из инвентаря";
   }
 
-  // Сетка выбора
   const pg = $("pickGrid");
   pg.innerHTML = "";
   const pe = $("pickEmpty");
@@ -1002,18 +1183,13 @@ document.querySelectorAll("#multRow .mult-btn").forEach(btn=>{
 });
 
 $("upgGo").addEventListener("click", ()=>{
-  if (upgSelected === null || !inventory[upgSelected]){
-    showToast("Выберите скин!");
-    return;
-  }
+  if (upgSelected === null || !inventory[upgSelected]){ showToast("Выберите скин!"); return; }
   const it = inventory[upgSelected];
   const up = UPGRADES[upgMult];
   const win = Math.random() < up.chance;
 
   $("upgGo").disabled = true;
-
-  // Крутим стрелку
-  spinArrow(win);
+  spinNeedle(win);
 
   setTimeout(()=>{
     if (win){
@@ -1030,19 +1206,15 @@ $("upgGo").addEventListener("click", ()=>{
     }
     renderInventory();
     renderUpgrade();
-    // Сброс стрелки через секунду
-    setTimeout(()=>{
-      const arrow = $("upgArrow");
-      arrow.style.transition = "none";
-      arrow.style.transform = "rotate(0deg)";
-    }, 800);
-  }, 4200);
+  }, 4700);
 });
 
 /* ============================================================
-   СТАРТ
+   ТИК ДЛЯ ГОЛД-КНОПКИ
 ============================================================ */
-// Ждём логина — до этого ничего не показываем.
+setInterval(()=>{
+  if ($("screen-inv").classList.contains("active")) renderGoldButton();
+}, 15000);
 </script>
 </body>
 </html>
