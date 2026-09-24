@@ -21,43 +21,46 @@
     display:flex;align-items:center;justify-content:center;padding:20px;
     background:linear-gradient(-45deg,#0b0f1c,#1b2340,#2a1b4a,#10263d);
     background-size:400% 400%;animation:bg 18s ease infinite;
+    overflow-y:auto;
   }
   .auth-screen.hide{display:none;}
   .auth-box{
     background:linear-gradient(160deg,rgba(20,27,48,.95),rgba(13,18,32,.95));
-    border:1px solid #26304d;border-radius:24px;padding:36px 28px;
+    border:1px solid #26304d;border-radius:24px;padding:32px 26px;
     max-width:420px;width:100%;text-align:center;
     box-shadow:0 25px 60px rgba(0,0,0,.6);
     backdrop-filter:blur(14px);
+    margin:auto;
   }
   .auth-box .brand{
-    font-size:34px;font-weight:900;letter-spacing:1px;margin-bottom:6px;
+    font-size:32px;font-weight:900;letter-spacing:1px;margin-bottom:6px;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#a78bfa,#22d3ee);
     background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:textFlow 6s ease infinite;
   }
   @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-  .auth-box .subtitle{color:#8b95b8;font-size:14px;margin-bottom:28px;}
-  .auth-box label{display:block;text-align:left;font-size:13px;color:#8b95b8;font-weight:600;margin-bottom:8px;margin-left:4px;}
+  .auth-box .subtitle{color:#8b95b8;font-size:13px;margin-bottom:22px;}
+  .auth-box label{display:block;text-align:left;font-size:13px;color:#8b95b8;font-weight:600;margin-bottom:7px;margin-left:4px;margin-top:14px;}
   .auth-box input{
-    width:100%;padding:14px 18px;border-radius:14px;
+    width:100%;padding:13px 16px;border-radius:13px;
     background:#0a0e1a;border:1px solid #26304d;color:#fff;
     font-size:15px;font-weight:600;outline:none;transition:.2s;
   }
   .auth-box input:focus{border-color:#7c5cff;box-shadow:0 0 0 3px rgba(124,92,255,.2);}
   .auth-box input::placeholder{color:#3f4a68;}
-  .auth-box .hint{font-size:12px;color:#5d6a8a;text-align:left;margin:8px 4px 20px;}
-  .auth-box .err{color:#ef4444;font-size:13px;font-weight:600;margin-bottom:12px;min-height:18px;}
+  .auth-box .hint{font-size:11px;color:#5d6a8a;text-align:left;margin:5px 4px 0;}
+  .auth-box .err{color:#ef4444;font-size:13px;font-weight:600;margin:14px 0 8px;min-height:16px;}
   .auth-btn{
     width:100%;padding:15px;border:none;border-radius:14px;cursor:pointer;
     font-size:16px;font-weight:800;color:#fff;
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#7c5cff);
     background-size:200% 100%;animation:btnFlow 5s ease infinite;transition:.2s;
+    margin-top:6px;
   }
   @keyframes btnFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   .auth-btn:hover{filter:brightness(1.15);box-shadow:0 10px 30px rgba(124,92,255,.4);}
   .auth-btn:disabled{opacity:.5;cursor:not-allowed;animation:none;filter:none;}
-  .switch-line{margin-top:20px;font-size:13px;color:#8b95b8;}
+  .switch-line{margin-top:18px;font-size:13px;color:#8b95b8;}
   .switch-line a{color:#22d3ee;text-decoration:none;font-weight:700;cursor:pointer;}
   .switch-line a:hover{text-decoration:underline;}
 
@@ -72,7 +75,6 @@
     background:linear-gradient(90deg,#7c5cff,#22d3ee,#a78bfa,#22d3ee);
     background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:textFlow 8s ease infinite;white-space:nowrap;flex-shrink:0;}
-  .logo .logo-txt{margin-left:2px;}
   .user-badge{
     display:flex;align-items:center;gap:6px;background:#131a2e;
     padding:5px 8px;border-radius:10px;border:1px solid #26304d;
@@ -97,7 +99,6 @@
     .balance #balance{max-width:60px;}
   }
 
-  /* ===== ЭКРАНЫ ===== */
   .screen{display:none;padding:14px;max-width:1200px;margin:0 auto;}
   .screen.active{display:block;animation:fade .3s ease;}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -116,7 +117,6 @@
   .case-card .price{color:#8b95b8;font-size:11px;}
   .case-card .price b{color:#22d3ee;font-weight:700;}
 
-  /* ===== ЭКРАН КЕЙСА ===== */
   .back-btn{background:#1a2338;border:1px solid #26304d;color:#c8d1f0;
     padding:8px 16px;border-radius:10px;cursor:pointer;font-weight:600;margin-bottom:14px;font-size:13px;}
   .back-btn:hover{border-color:#7c5cff;color:#fff;}
@@ -140,21 +140,21 @@
   /* ===== ДРОП-ЛИСТ ===== */
   .drop-list{margin-top:20px;}
   .drop-list h3{font-size:15px;margin-bottom:10px;color:#8b95b8;font-weight:600;}
-  .drop-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
+  .drop-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
   .drop-item{background:#0f1526;border:1px solid #26304d;border-radius:12px;padding:8px;
     text-align:center;position:relative;overflow:hidden;transition:.2s;}
-  .drop-item .pct{position:absolute;top:5px;right:5px;background:#1a2338;color:#c8d1f0;
-    font-size:10px;font-weight:700;padding:2px 7px;border-radius:7px;}
-  .drop-item .gun{font-size:34px;margin:6px 0;display:block;}
-  .drop-item .name{font-size:11px;color:#fff;font-weight:600;margin-bottom:2px;}
-  .drop-item .sub{font-size:10px;color:#8b95b8;margin-bottom:4px;}
-  .drop-item .val{font-size:11px;color:#22d3ee;font-weight:700;}
+  .drop-item .pct{position:absolute;top:6px;right:6px;background:rgba(10,14,26,.85);color:#e6ecff;
+    font-size:11px;font-weight:800;padding:3px 8px;border-radius:8px;border:1px solid #26304d;}
+  .drop-item .gun{font-size:36px;margin:8px 0 6px;display:block;}
+  .drop-item .name{font-size:12px;color:#fff;font-weight:700;margin-bottom:2px;}
+  .drop-item .sub{font-size:10px;color:#8b95b8;margin-bottom:6px;}
+  .drop-item .val{font-size:12px;color:#22d3ee;font-weight:800;}
 
   .r-common{border-color:#3a4661;}
-  .r-uncommon{border-color:#3b82f6;}
-  .r-rare{border-color:#7c5cff;}
-  .r-epic{border-color:#a855f7;box-shadow:0 0 15px rgba(168,85,247,.25);}
-  .r-legend{border-color:#f59e0b;box-shadow:0 0 18px rgba(245,158,11,.3);}
+  .r-uncommon{border-color:#3b82f6;background:linear-gradient(180deg,#0a1526,#0f1526);}
+  .r-rare{border-color:#7c5cff;background:linear-gradient(180deg,#130a26,#0f1526);}
+  .r-epic{border-color:#a855f7;box-shadow:0 0 15px rgba(168,85,247,.25);background:linear-gradient(180deg,#1a0a26,#0f1526);}
+  .r-legend{border-color:#f59e0b;box-shadow:0 0 18px rgba(245,158,11,.3);background:linear-gradient(180deg,#26160a,#0f1526);}
 
   /* ===== ИНВЕНТАРЬ ===== */
   .inv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
@@ -191,7 +191,7 @@
   .inv-card .sell:hover{background:#ef4444;}
   .empty{text-align:center;color:#5d6a8a;padding:30px 20px;font-size:13px;}
 
-  /* ===== АПГРЕЙД — КРУТИТСЯ СТРЕЛКА ===== */
+  /* ===== АПГРЕЙД ===== */
   .upg-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;margin-bottom:20px;}
 
   .upg-wheel-box{
@@ -199,8 +199,6 @@
     display:flex;align-items:center;justify-content:center;
     isolation:isolate;
   }
-
-  /* Статичное кольцо с зонами: зелёная = WIN, красная = LOSE */
   .upg-ring{
     position:absolute;inset:0;border-radius:50%;
     background:conic-gradient(
@@ -213,8 +211,6 @@
     box-shadow:0 0 40px rgba(34,197,94,.25), inset 0 0 30px rgba(0,0,0,.6);
     z-index:1;
   }
-
-  /* Маска — превращает полный диск в тонкое кольцо */
   .upg-ring-mask{
     position:absolute;inset:26px;border-radius:50%;
     background:radial-gradient(circle,#0a0e1a,#0f1526);
@@ -222,8 +218,6 @@
     z-index:2;
     box-shadow:inset 0 0 30px rgba(0,0,0,.7);
   }
-
-  /* Центральный блок с процентом */
   .upg-center{
     position:relative;z-index:3;
     width:170px;height:170px;border-radius:50%;
@@ -241,51 +235,31 @@
   }
   .upg-center .lbl{font-size:11px;color:#8b95b8;margin-top:4px;font-weight:600;letter-spacing:.3px;}
 
-  /* Крутящаяся стрелка (палка) */
   .upg-needle{
-    position:absolute;
-    top:0;left:50%;
-    width:8px;height:50%;
-    margin-left:-4px;
-    transform-origin:50% 100%;
-    transform:rotate(0deg);
-    pointer-events:none;
-    z-index:5;
-    will-change:transform;
+    position:absolute;top:0;left:50%;
+    width:8px;height:50%;margin-left:-4px;
+    transform-origin:50% 100%;transform:rotate(0deg);
+    pointer-events:none;z-index:5;will-change:transform;
   }
-  /* Остриё (треугольник), смотрит наружу */
   .upg-needle::before{
-    content:'';
-    position:absolute;
-    top:0;left:50%;
-    transform:translateX(-50%);
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
     width:0;height:0;
-    border-left:12px solid transparent;
-    border-right:12px solid transparent;
+    border-left:12px solid transparent;border-right:12px solid transparent;
     border-bottom:18px solid #fbbf24;
     filter:drop-shadow(0 0 10px rgba(251,191,36,.95));
   }
-  /* Тело стрелки */
   .upg-needle::after{
-    content:'';
-    position:absolute;
-    top:16px;bottom:2px;left:50%;
-    transform:translateX(-50%);
+    content:'';position:absolute;top:16px;bottom:2px;left:50%;transform:translateX(-50%);
     width:4px;
     background:linear-gradient(to bottom,#fbbf24 0%,#f59e0b 35%,rgba(245,158,11,.35) 85%,transparent 100%);
-    border-radius:2px;
-    box-shadow:0 0 8px rgba(251,191,36,.55);
+    border-radius:2px;box-shadow:0 0 8px rgba(251,191,36,.55);
   }
-
-  /* Индикатор оси в центре */
   .upg-hub{
     position:absolute;top:50%;left:50%;
-    width:16px;height:16px;margin:-8px 0 0 -8px;
-    border-radius:50%;
+    width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
     background:radial-gradient(circle,#fbbf24,#b45309);
     box-shadow:0 0 12px rgba(251,191,36,.8);
-    z-index:6;
-    pointer-events:none;
+    z-index:6;pointer-events:none;
   }
 
   .upg-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;
@@ -358,7 +332,6 @@
   .modal-btn.keep{background:#26304d;}
   .modal-btn:hover{filter:brightness(1.15);}
 
-  /* ===== НИЖНЕЕ МЕНЮ ===== */
   .nav{
     position:fixed;bottom:0;left:0;right:0;z-index:100;
     display:flex;justify-content:space-around;align-items:center;
@@ -394,11 +367,10 @@
 <div class="auth-screen" id="authScreen">
   <div class="auth-box">
     <div class="brand">💀 Reward Centre</div>
-    <div class="subtitle">Создай аккаунт и начни подниматься</div>
-
-    <label for="nickInput">Твой никнейм</label>
-    <input id="nickInput" type="text" placeholder="Например: ShadowKiller" maxlength="16" autocomplete="off"/>
-    <div class="hint">3–16 символов · буквы, цифры, _ · ник должен быть уникальным</div>
+    <div class="subtitle" id="authSubtitle">Создай аккаунт и начни подниматься</div>
+    <label for="passInput">Пароль</label>
+    <input id="passInput" type="password" placeholder="Минимум 4 символа" maxlength="32" autocomplete="off"/>
+    <div class="hint">Хранится в виде хеша (SHA-256)</div>
 
     <div class="err" id="authErr"></div>
 
@@ -471,7 +443,6 @@
   <div class="screen-title">⬆️ Апгрейд</div>
 
   <div class="upg-wrap">
-
     <div class="upg-wheel-box">
       <div class="upg-ring" id="upgRing"></div>
       <div class="upg-ring-mask"></div>
@@ -548,6 +519,11 @@
 ============================================================ */
 const START_BALANCE = 1000;
 
+/* Специальные аккаунты — минимальный баланс */
+const SPECIAL_ACCOUNTS = {
+  "kiryl_2026": 1000000
+};
+
 const RARITY = {
   common:   { class:"r-common",   label:"Обычное"    },
   uncommon: { class:"r-uncommon", label:"Необычное"  },
@@ -556,58 +532,77 @@ const RARITY = {
   legend:   { class:"r-legend",   label:"Легендарное"}
 };
 
-const GUN_ICONS = ["🔫","💥","🎯","⚔️","🗡️","🪓","🛡️","🏹"];
+const GUN_ICONS = ["🔫","💥","🎯","⚔️","🗡️","🪓","🛡️","🏹","🔪","🪃","🧨","💣"];
 
 const CASES = [
-  {name:"Стартовый ящик", emoji:"🧰", price:99,    min:10,   max:120},
-  {name:"Летний набор",   emoji:"🌴", price:199,   min:20,   max:250},
-  {name:"Видения и тени", emoji:"🌑", price:299,   min:30,   max:400},
-  {name:"Скорострел",     emoji:"🔫", price:699,   min:80,   max:900},
-  {name:"Бронза",         emoji:"🥉", price:100,   min:20,   max:250},
-  {name:"Серебро",        emoji:"🥈", price:200,   min:40,   max:500},
-  {name:"Золото",         emoji:"🥇", price:350,   min:80,   max:900},
-  {name:"Платина",        emoji:"💎", price:500,   min:120,  max:1300},
-  {name:"Алмаз",          emoji:"💠", price:750,   min:200,  max:2000},
-  {name:"Изумруд",        emoji:"💚", price:1000,  min:300,  max:2700},
-  {name:"Сапфир",         emoji:"🔷", price:1300,  min:400,  max:3500},
-  {name:"Рубин",          emoji:"❤️", price:1600,  min:500,  max:4300},
-  {name:"Аметист",        emoji:"💜", price:2000,  min:600,  max:5400},
-  {name:"Топаз",          emoji:"🧡", price:2500,  min:800,  max:6800},
-  {name:"Оникс",          emoji:"🖤", price:3000,  min:1000, max:8100},
-  {name:"Лазурит",        emoji:"🔵", price:3600,  min:1200, max:9700},
-  {name:"Малахит",        emoji:"🟢", price:4300,  min:1500, max:11600},
-  {name:"Обсидиан",       emoji:"⬛", price:5100,  min:1800, max:13800},
-  {name:"Кварц",          emoji:"⚪", price:6000,  min:2100, max:16200},
-  {name:"Гранат",         emoji:"🍎", price:7000,  min:2500, max:18900},
-  {name:"Циркон",         emoji:"✨", price:8200,  min:2900, max:22100},
-  {name:"Хризолит",       emoji:"🍋", price:9600,  min:3400, max:25900},
-  {name:"Аквамарин",      emoji:"💧", price:11000, min:3900, max:29700},
-  {name:"Турмалин",       emoji:"🌈", price:13000, min:4600, max:35100},
-  {name:"Флюорит",        emoji:"🔮", price:15000, min:5300, max:40500},
-  {name:"Опал",           emoji:"🌌", price:17500, min:6200, max:47200},
-  {name:"Метеорит",       emoji:"☄️", price:23000, min:8200, max:62100},
-  {name:"Комета",         emoji:"🌠", price:35000, min:12500,max:94500},
-  {name:"Reward Centre",  emoji:"👑", price:50000, min:18000,max:135000}
+  {name:"Стартовый ящик", emoji:"🧰", price:99},
+  {name:"Летний набор",   emoji:"🌴", price:199},
+  {name:"Видения и тени", emoji:"🌑", price:299},
+  {name:"Скорострел",     emoji:"🔫", price:699},
+  {name:"Бронза",         emoji:"🥉", price:100},
+  {name:"Серебро",        emoji:"🥈", price:200},
+  {name:"Золото",         emoji:"🥇", price:350},
+  {name:"Платина",        emoji:"💎", price:500},
+  {name:"Алмаз",          emoji:"💠", price:750},
+  {name:"Изумруд",        emoji:"💚", price:1000},
+  {name:"Сапфир",         emoji:"🔷", price:1300},
+  {name:"Рубин",          emoji:"❤️", price:1600},
+  {name:"Аметист",        emoji:"💜", price:2000},
+  {name:"Топаз",          emoji:"🧡", price:2500},
+  {name:"Оникс",          emoji:"🖤", price:3000},
+  {name:"Лазурит",        emoji:"🔵", price:3600},
+  {name:"Малахит",        emoji:"🟢", price:4300},
+  {name:"Обсидиан",       emoji:"⬛", price:5100},
+  {name:"Кварц",          emoji:"⚪", price:6000},
+  {name:"Гранат",         emoji:"🍎", price:7000},
+  {name:"Циркон",         emoji:"✨", price:8200},
+  {name:"Хризолит",       emoji:"🍋", price:9600},
+  {name:"Аквамарин",      emoji:"💧", price:11000},
+  {name:"Турмалин",       emoji:"🌈", price:13000},
+  {name:"Флюорит",        emoji:"🔮", price:15000},
+  {name:"Опал",           emoji:"🌌", price:17500},
+  {name:"Метеорит",       emoji:"☄️", price:23000},
+  {name:"Комета",         emoji:"🌠", price:35000},
+  {name:"Reward Centre",  emoji:"👑", price:50000}
 ];
 
-const SKIN_NAMES = ["Lifted","Sakkaku","Resupply","Ensnared","Run and Hide","Fade","Modern Hunter",
-                    "Neon Rider","Blood Sport","Golden Coil","Frostbite","Hyper Beast","Dragon Lore"];
+/* Имена скинов */
+const SKIN_NAMES = [
+  "Lifted","Sakkaku","Resupply","Ensnared","Run and Hide","Fade","Modern Hunter",
+  "Neon Rider","Blood Sport","Golden Coil","Frostbite","Hyper Beast","Dragon Lore",
+  "Asiimov","Neo-Noir","Redline","Printstream","Case Hardened","Doppler","Ultraviolet",
+  "Crimson Web","Fade","Slaughter","Tiger Tooth","Marble Fade","Autotronic","Bright Water"
+];
+
+/* Распределение редкостей — как на скринах: 0.5 / 1.3 / 3.3 / 6.3 / 22.7 */
+const DROP_DIST = [
+  { rarity: "legend",   chance: 0.5,   mult: 15  }, // 1 шт  — джекпот
+  { rarity: "epic",     chance: 1.3,   mult: 5   }, // 2 шт
+  { rarity: "epic",     chance: 1.3,   mult: 5   },
+  { rarity: "rare",     chance: 3.3,   mult: 2.2 }, // 3 шт
+  { rarity: "rare",     chance: 3.3,   mult: 2.2 },
+  { rarity: "rare",     chance: 3.3,   mult: 2.2 },
+  { rarity: "uncommon", chance: 6.3,   mult: 1.1 }, // 3 шт
+  { rarity: "uncommon", chance: 6.3,   mult: 1.1 },
+  { rarity: "uncommon", chance: 6.3,   mult: 1.1 },
+  { rarity: "common",   chance: 22.7,  mult: 0.55 }, // 3 шт
+  { rarity: "common",   chance: 22.7,  mult: 0.55 },
+  { rarity: "common",   chance: 22.7,  mult: 0.55 }
+];
+
 function buildSkins(c){
-  const chances   = [0.1, 0.5, 1.5, 5,  12,  30,  50.9];
-  const rarityKey = ["legend","epic","epic","rare","rare","uncommon","common"];
-  const mults     = [2.5, 2.0, 1.65, 1.4, 1.2, 1.0, 0.85];
-  const base = c.price > 0 ? c.price : Math.max(c.min, c.max / 2.5);
+  const base = c.price;
   const skins = [];
-  for (let i = 0; i < 7; i++){
-    const jitter = 0.95 + Math.random() * 0.1;
-    let price = Math.floor(base * mults[i] * jitter);
-    if (price < c.min) price = c.min;
-    if (price > c.max) price = c.max;
+  for (let i = 0; i < DROP_DIST.length; i++){
+    const d = DROP_DIST[i];
+    const jitter = 0.92 + Math.random() * 0.16; // ±8%
+    let price = Math.round(base * d.mult * jitter);
+    if (price < 1) price = 1;
     skins.push({
-      name: SKIN_NAMES[(i + c.name.length) % SKIN_NAMES.length] + " " + c.name,
-      gun: GUN_ICONS[(i + c.name.length) % GUN_ICONS.length],
-      rarity: rarityKey[i],
-      chance: chances[i],
+      name: SKIN_NAMES[(i * 3 + c.name.length) % SKIN_NAMES.length] + " " + c.name,
+      gun: GUN_ICONS[(i * 2 + c.name.length) % GUN_ICONS.length],
+      rarity: d.rarity,
+      chance: d.chance,
       price: price
     });
   }
@@ -633,7 +628,7 @@ let currentCount = 1;
 let upgSelected = null;
 let upgMult = 2;
 let pendingNewIds = [];
-let upgRotation = 0;   // накопленный угол стрелки
+let upgRotation = 0;
 
 const $ = id => document.getElementById(id);
 
@@ -649,20 +644,47 @@ function load(){
   const rawB = localStorage.getItem(userKey("balance"));
   const b = Number(rawB);
   balance = (rawB === null || rawB === "" || isNaN(b)) ? START_BALANCE : b;
+
+  // Спец-аккаунты: если баланс ниже минимума — подкидываем до минимума
+  const minBal = SPECIAL_ACCOUNTS[currentUser.toLowerCase()];
+  if (minBal && balance < minBal){
+    balance = minBal;
+    localStorage.setItem(userKey("balance"), balance);
+  }
+
   try { inventory = JSON.parse(localStorage.getItem(userKey("inv"))) || []; } catch(e){ inventory = []; }
   if (!Array.isArray(inventory)) inventory = [];
 }
 
+/* Хранилище пользователей: [{ name, hash }] */
 function getAllUsers(){
   try {
     const raw = localStorage.getItem("rc_users");
     if (!raw) return [];
     const arr = JSON.parse(raw);
     if (!Array.isArray(arr)) return [];
-    return arr.filter(u => typeof u === "string" && u.length > 0);
+    return arr.map(u => {
+      if (typeof u === "string") return { name: u, hash: null };
+      if (u && typeof u === "object" && typeof u.name === "string") return { name: u.name, hash: u.hash || null };
+      return null;
+    }).filter(u => u && u.name);
   } catch(e){ return []; }
 }
 function saveUsers(arr){ localStorage.setItem("rc_users", JSON.stringify(arr)); }
+
+/* SHA-256 через SubtleCrypto (с фолбэком) */
+async function hashPass(p){
+  try {
+    const buf = new TextEncoder().encode("rc_salt_v1:" + p);
+    const digest = await crypto.subtle.digest("SHA-256", buf);
+    return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  } catch(e){
+    // Фолбэк для http / старых браузеров
+    let h = 5381;
+    for (let i = 0; i < p.length; i++) h = ((h << 5) + h + p.charCodeAt(i)) | 0;
+    return "fb_" + (h >>> 0).toString(16);
+  }
+}
 
 function fmt(n){ return Number(n).toLocaleString("ru-RU"); }
 
@@ -682,8 +704,10 @@ function showToast(text, type="error"){
 ============================================================ */
 const authScreen = $("authScreen");
 const nickInput = $("nickInput");
+const passInput = $("passInput");
 const authBtn = $("authBtn");
 const authErr = $("authErr");
+const authSubtitle = $("authSubtitle");
 const loginModeLink = $("loginMode");
 let isLoginMode = false;
 
@@ -692,43 +716,68 @@ loginModeLink.addEventListener("click", ()=>{
   if (isLoginMode){
     authBtn.textContent = "ВОЙТИ";
     loginModeLink.textContent = "Создать аккаунт";
-    document.querySelector(".auth-box .subtitle").textContent = "Введи свой ник и продолжай играть";
+    authSubtitle.textContent = "Введи ник и пароль, чтобы продолжить";
   } else {
     authBtn.textContent = "СОЗДАТЬ АККАУНТ";
     loginModeLink.textContent = "Войти в аккаунт";
-    document.querySelector(".auth-box .subtitle").textContent = "Создай аккаунт и начни подниматься";
+    authSubtitle.textContent = "Создай аккаунт и начни подниматься";
   }
   authErr.textContent = "";
 });
 
-authBtn.addEventListener("click", ()=>{
+authBtn.addEventListener("click", async ()=>{
   authErr.textContent = "";
+  authBtn.disabled = true;
   try {
     const nick = nickInput.value.trim();
+    const pass = passInput.value;
+
     if (!nick){ authErr.textContent = "Введи ник!"; return; }
     if (nick.length < 3 || nick.length > 16){ authErr.textContent = "Ник должен быть от 3 до 16 символов"; return; }
     if (!/^[a-zA-Z0-9_а-яА-ЯёЁ]+$/.test(nick)){ authErr.textContent = "Только буквы, цифры и _"; return; }
+    if (!pass){ authErr.textContent = "Введи пароль!"; return; }
+    if (pass.length < 4){ authErr.textContent = "Пароль должен быть минимум 4 символа"; return; }
+
+    const passHash = await hashPass(pass);
 
     const users = getAllUsers();
     const lower = nick.toLowerCase();
-    const exists = users.find(u => u.toLowerCase() === lower);
+    const existing = users.find(u => u.name.toLowerCase() === lower);
 
     if (isLoginMode){
-      if (!exists){ authErr.textContent = "Такого аккаунта нет! Создай новый."; return; }
-      loginUser(exists);
+      if (!existing){
+        authErr.textContent = "Такого аккаунта нет! Создай новый.";
+        return;
+      }
+      if (existing.hash && existing.hash !== passHash){
+        authErr.textContent = "Неверный пароль!";
+        return;
+      }
+      // Легаси-аккаунт без пароля — устанавливаем пароль с этого входа
+      if (!existing.hash){
+        existing.hash = passHash;
+        saveUsers(users);
+      }
+      loginUser(existing.name);
     } else {
-      if (exists){ authErr.textContent = "Такой ник уже занят! Придумай другой."; return; }
-      users.push(nick);
+      if (existing){
+        authErr.textContent = "Такой ник уже занят! Придумай другой.";
+        return;
+      }
+      users.push({ name: nick, hash: passHash });
       saveUsers(users);
       loginUser(nick);
     }
   } catch(err){
     console.error("[RC] authBtn error:", err);
     authErr.textContent = "Ошибка: " + (err.message || err);
+  } finally {
+    authBtn.disabled = false;
   }
 });
 
-nickInput.addEventListener("keydown", e=>{ if(e.key==="Enter") authBtn.click(); });
+nickInput.addEventListener("keydown", e=>{ if(e.key==="Enter") passInput.focus(); });
+passInput.addEventListener("keydown", e=>{ if(e.key==="Enter") authBtn.click(); });
 
 function loginUser(nick){
   try {
@@ -773,13 +822,14 @@ $("userBadge").addEventListener("click", ()=>{
     isLoginMode = false;
     authBtn.textContent = "СОЗДАТЬ АККАУНТ";
     loginModeLink.textContent = "Войти в аккаунт";
-    document.querySelector(".auth-box .subtitle").textContent = "Создай аккаунт и начни подниматься";
+    authSubtitle.textContent = "Создай аккаунт и начни подниматься";
 
     authScreen.classList.remove("hide");
     $("navBar").style.display = "none";
     document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
     $("screen-cases").classList.add("active");
     nickInput.value = "";
+    passInput.value = "";
     authErr.textContent = "";
   }
 });
@@ -788,8 +838,8 @@ $("userBadge").addEventListener("click", ()=>{
   const saved = localStorage.getItem("rc_current_user");
   if (saved){
     const users = getAllUsers();
-    const match = users.find(u => u.toLowerCase() === saved.toLowerCase());
-    if (match){ loginUser(match); return; }
+    const match = users.find(u => u.name.toLowerCase() === saved.toLowerCase());
+    if (match){ loginUser(match.name); return; }
   }
   nickInput.focus();
 })();
@@ -1067,12 +1117,11 @@ function claimGold(){
 $("goldClaim").addEventListener("click", claimGold);
 
 /* ============================================================
-   АПГРЕЙД — крутится СТРЕЛКА, кольцо с зонами статично
+   АПГРЕЙД
 ============================================================ */
 function updateUpgradeUI(){
   const pct = Math.round(UPGRADES[upgMult].chance * 100);
   $("upgChance").textContent = pct + "%";
-  // Зелёная зона = win chance. Conic-gradient идёт по часовой от 12ч.
   const deg = UPGRADES[upgMult].chance * 360;
   const ring = $("upgRing");
   if (ring) ring.style.setProperty("--win-deg", deg + "deg");
@@ -1081,35 +1130,26 @@ function updateUpgradeUI(){
 function spinNeedle(win){
   const needle = $("upgNeedle");
   if (!needle) return;
-
   const pct = UPGRADES[upgMult].chance;
   const winDeg = pct * 360;
 
-  // Куда должен попасть кончик стрелки (0° = вверх, по часовой)
   let localAngle;
   if (win){
-    // В зелёную зону [0, winDeg)
     localAngle = winDeg * 0.05 + Math.random() * winDeg * 0.9;
   } else {
-    // В красную зону [winDeg, 360)
     const loseStart = winDeg;
     const loseSize = 360 - winDeg;
     localAngle = loseStart + loseSize * 0.05 + Math.random() * loseSize * 0.9;
   }
 
-  // Текущий локальный угол стрелки (0..360)
   const currentLocal = ((upgRotation % 360) + 360) % 360;
-
-  // На сколько градусов нужно довернуть, чтобы попасть в localAngle
   let delta = localAngle - currentLocal;
   if (delta < 0) delta += 360;
 
-  // 6 полных оборотов + доворот
   const totalRot = 360 * 6 + delta;
   const fromRot = upgRotation;
   upgRotation += totalRot;
 
-  // Сброс и запуск анимации от текущего положения
   needle.style.transition = "none";
   needle.style.transform = `rotate(${fromRot}deg)`;
   void needle.offsetWidth;
@@ -1119,7 +1159,6 @@ function spinNeedle(win){
 
 function renderUpgrade(){
   updateUpgradeUI();
-
   if (upgSelected !== null && !inventory[upgSelected]) upgSelected = null;
 
   const slot = $("slotLeft");
@@ -1210,7 +1249,7 @@ $("upgGo").addEventListener("click", ()=>{
 });
 
 /* ============================================================
-   ТИК ДЛЯ ГОЛД-КНОПКИ
+   ТИК ГОЛД-КНОПКИ
 ============================================================ */
 setInterval(()=>{
   if ($("screen-inv").classList.contains("active")) renderGoldButton();
